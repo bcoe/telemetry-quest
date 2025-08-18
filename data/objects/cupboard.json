@@ -1,0 +1,28 @@
+{
+    "x": 232,
+    "y": 466,
+    "actions": {
+        "has-cup": {
+            "poke": [
+                {
+                    "action": "changeState",
+                    "state": "no-cup"
+                },
+                {
+                    "action": "addInventory",
+                    "item": "coffee-cup"
+                },
+                {
+                    "action": "playSound",
+                    "sound": "dialog/lucky-mug"
+                }
+            ]
+        }
+    },
+    "current-state": "has-cup",
+    "states": {
+        "has-cup": {
+            "image": "cupboard-door"
+        }
+    }
+}

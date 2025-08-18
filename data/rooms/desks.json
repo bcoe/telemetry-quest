@@ -1,0 +1,16 @@
+{
+    "objects": [
+    ],
+    "resources": {
+        "images": [
+            "desks"
+        ],
+         "videos": [
+            "pm"
+        ],
+         "sounds": [
+            "new-ai-feature"
+        ]
+    },
+    "background": "desks"
+}

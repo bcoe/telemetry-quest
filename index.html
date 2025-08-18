@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Telemetry Quest</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="index.css">
+  </head>
+  <body bgcolor="white">
+    <div style="height: 600px; margin-top: 50px;">
+      <div id="screen" class="cursor-poke" />
+    </div>
+    <script type="module">
+      import * as me from 'https://esm.run/melonjs';
+      import { UISpriteElement } from 'https://esm.run/melonjs';
+      import desks from './data/rooms/desks.json' with { type: "json" };
+      import kitchen from './data/rooms/kitchen.json' with { type: "json" };
+      import coffeeMachine from './data/objects/coffee-machine.json' with { type: "json" };
+      import cupboard from './data/objects/cupboard.json' with { type: "json" };
+      const canvas = document.getElementById(('screen'));
+
+      const WIDTH = 800;
+      const HEIGHT = 800;
+
+      let cursor = 'poke';
+      let CURSOR = 0; // 0 = poke, 1 = walk, 2 = talk
+      const CURSOR_CLASS = ['poke', 'walk', 'talk'];
+
+      let inventory;
+
+      const objects = {
+        'coffee-machine': coffeeMachine,
+        cupboard
+      };
+      const rooms = {
+        desks,
+        kitchen
+      };
+      const inventoryItems = [
+        'inventory/coffee-cup',
+        'inventory/inventory-background'
+      ];
+      const globalSoundEffects = [
+        'success',
+      ];
+
+     class Item extends UISpriteElement {
+        constructor(x, y, scaleX, scaleY, item) {
+            super(x, y, {
+              image: item,
+            });
+            this.item = item;
+        }
+        onOver(event) {
+          this.tint.setColor(144, 238, 144);
+        }
+        onOut(event) {
+          this.tint.setColor(255, 255, 255);
+        }
+        onClick(event) {
+          canvas.classList.remove(`cursor-${cursor}`);
+          cursor = this.item;
+          canvas.classList.add(`cursor-${cursor}`);
+        }
+     }
+
+      class Inventory extends UISpriteElement {
+        constructor(x, y, scaleX, scaleY) {
+          super(x, y, {
+            image: 'inventory-background',
+          });
+          this.currentTransform.scale(scaleX, scaleY);
+          this.x = x;
+          this.y = y;
+          this.items = [];
+          this.page = 0;
+          this.scaleX = scaleX;
+          this.scaleY = scaleY;
+          this.spacingX = 100;
+          this.spacingY = 74;
+        }
+        addItem(item) {
+          const y = parseInt(this.items.length / 3) * this.spacingY;
+          const x = (this.items.length % 3) * this.spacingX;
+          const itemSprite = new Item(x + this.x - 96, y + this.y - 40, this.scaleX, this.scaleY, item);
+          this.items.push(itemSprite);
+          me.game.world.addChild(itemSprite);
+        }
+        removeItem(item) {
+          console.info(item);
+          const itemSprite = this.items.find(i => {
+            return i.item === item;
+          })
+          console.info(itemSprite);
+          if (itemSprite) {
+            me.game.world.removeChild(itemSprite);
+            canvas.classList.remove(`cursor-${cursor}`);
+            cursor = CURSOR_CLASS[CURSOR];
+            canvas.classList.add(`cursor-${cursor}`);
+          }
+        }
+      }
+
+      class Sprite extends UISpriteElement {
+        constructor(scaleX, scaleY, data) {
+            super(data.x, data.y, {
+              image: data.states[data['current-state']].image,
+            });
+            this.currentTransform.scale(scaleX, scaleY);
+            this.actions = data.actions;
+            this.data = data;
+        }
+        onOver(event) {
+          this.tint.setColor(144, 238, 144);
+        }
+        onOut(event) {
+          this.tint.setColor(255, 255, 255);
+        }
+        changeState(action) {
+          this.data['current-state'] = action.state;
+          if (this.data.states[action.state]?.image) {
+            this.image = this.data.states[action.state].image;
+          }
+        }
+        addInventory(action) {
+          inventory.addItem(action.item);
+        }
+        playSound(sound) {
+          me.audio.play(sound.sound);
+        }
+        removeItem(action) {
+          inventory.removeItem(action.item);
+        }
+        onClick(event) {
+          if (this.data.actions?.[this.data['current-state']]?.[cursor]) {
+            for (const action of this.data.actions[this.data['current-state']][cursor]) {
+              this[action.action](action);
+            }
+          }
+        }
+      };
+
+      class Map {
+        constructor(data) {
+          this.data = data;
+          this.images = [];
+          this.sounds = [];
+        }
+        async load() {
+          if (me.game.world) {
+            for (const child of me.game.world.getChildren()) {
+              me.game.world.removeChild(child);
+            }
+          }
+          me.loader.unloadAll();
+          const resources = [];
+          for (const image of [...this.data.resources.images, ...inventoryItems]) {
+            const splitImage = image.split('/');
+            resources.push({
+              name: splitImage[splitImage.length - 1],
+              type: "image",
+              src: `data/${image}.png`,
+            })
+          }
+          for (const video of this.data.resources.videos) {
+            resources.push({
+              name: video,
+              type: "video",
+              src: `data/${video}.mp4`,
+            })
+          }
+          for (const audio of [...this.data.resources.sounds, ...globalSoundEffects]) {
+            resources.push({
+              name: audio,
+              type: "audio",
+              src: `data/`,
+            })
+          }
+          return new Promise((resolve) => {   
+              me.loader.preload(resources, () => {
+                // Set the map background:
+                const background = new me.Sprite(
+                  me.game.viewport.width / 2 ,
+                  me.game.viewport.height / 2, {
+                  image : this.data.background,
+                  anchorPoint : new me.Vector2d(0.5, 0.5),
+                });
+                const scaleX = WIDTH / background.width;
+                const scaleY = HEIGHT / background.height;
+                background.currentTransform.scale(scaleX, scaleY);
+                me.game.world.addChild(background);
+
+                // Load all sprites in the scene:
+                for (const object of this.data.objects) {
+                  const obj = new Sprite(scaleX, scaleY, objects[object]);
+                  me.game.world.addChild(obj);
+                }
+                if (!inventory) {
+                  inventory = new Inventory(595, 697, scaleX, scaleY);
+                }
+                me.game.world.addChild(inventory);
+                return resolve();
+            });
+          });     
+        }
+      }
+
+      canvas.addEventListener('contextmenu', function(ev) {
+        ev.preventDefault();
+        canvas.classList.remove(`cursor-${cursor}`);
+        CURSOR = (CURSOR + 1) % CURSOR_CLASS.length;
+        cursor = CURSOR_CLASS[CURSOR];
+        canvas.classList.add(`cursor-${cursor}`);
+        return false;
+      }, false);
+
+      me.device.onReady(async function () {
+        if (!me.video.init(WIDTH, HEIGHT, {parent : "screen", scale : "auto"})) {
+          alert("Your browser does not support HTML5 canvas.");
+          return;
+        }
+        me.audio.init("wav");
+        const m1 = new Map(rooms.kitchen);
+        await m1.load();        
+      });
+    </script>
+  </body>
+</html>

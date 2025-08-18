@@ -1,0 +1,40 @@
+{
+    "x": 540,
+    "y": 339,
+    "actions": {
+        "no-cup": {
+            "coffee-cup": [{
+                "action": "changeState",
+                "state": "has-cup"
+            },
+            {
+                "action": "removeItem",
+                "item": "coffee-cup"
+            },
+            {
+                "action": "playSound",
+                "sound": "success"
+            }
+            ],
+            "poke": [{
+                "action": "playSound",
+                "sound": "dialog/enclosed-vessel"
+            }]
+        },
+        "has-cup": {
+            "poke": [{
+                "action": "playSound",
+                "sound": "dialog/coffee-filters-missing"
+            }]
+        }
+    },
+    "current-state": "no-cup",
+    "states": {
+        "no-cup": {
+            "image": "coffee-machine-no-cup"
+        },
+        "has-cup": {
+            "image": "coffee-machine-with-cup"
+        }
+    }
+}

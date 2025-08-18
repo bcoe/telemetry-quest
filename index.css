@@ -1,0 +1,40 @@
+body {
+    background-color: #000;
+    color: #fff;
+  
+    /* Allow mouse dragging. */
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+  
+    /* disable touch panning/zooming */
+    -ms-touch-action: none;
+    touch-action: none;
+  
+    /* Allow canvas to hit the edges of the browser viewport. */
+    margin: 0;
+  }
+  
+  #screen canvas {
+    margin: auto;
+    /* Hide the gap for font descenders. */
+    display: block;
+  }
+
+  #screen.cursor-poke canvas {
+    cursor: url('data/poke.png'), auto;
+  }
+
+  #screen.cursor-walk canvas {
+    cursor: url('data/walk.png'), auto;
+  }
+
+  #screen.cursor-talk canvas {
+    cursor: url('data/talk.png'), auto;
+  }
+
+  #screen.cursor-coffee-cup canvas {
+    cursor: url('data/inventory/coffee-cup.png'), auto;
+  }
