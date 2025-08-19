@@ -1,0 +1,25 @@
+{
+    "x": 0,
+    "y": 300,
+    "description": "Walk to tables",
+    "actions": {
+        "exit": {
+            "poke": [
+                {
+                    "action": "setHoverText",
+                    "text": ""
+                },
+                {
+                    "action": "travel",
+                    "location": "cafeteria"
+                }    
+            ]
+        }
+    },
+    "current-state": "exit",
+    "states": {
+        "exit": {
+            "image": "left-right-exit"
+        }
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "objects": [
+        "bottom-exit-hallway",
+        "kitchen-door",
+        "hallway-right",
+        "hallway-left"
+    ],
+    "background": "hallway"
+}

@@ -1,0 +1,25 @@
+{
+    "x": 400,
+    "y": 550,
+    "description": "Walk to frontend engineering pod",
+    "actions": {
+        "exit": {
+            "poke": [
+                {
+                    "action": "setHoverText",
+                    "text": ""
+                },
+                {
+                    "action": "travel",
+                    "location": "frontend"
+                }    
+            ]
+        }
+    },
+    "current-state": "exit",
+    "states": {
+        "exit": {
+            "image": "up-down-exit"
+        }
+    }
+}

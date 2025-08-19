@@ -1,0 +1,25 @@
+{
+    "x": 475,
+    "y": 270,
+    "description": "Walk to DevOps / IT pod",
+    "actions": {
+        "exit": {
+            "poke": [
+                {
+                    "action": "setHoverText",
+                    "text": ""
+                },
+                {
+                    "action": "travel",
+                    "location": "devops"
+                }    
+            ]
+        }
+    },
+    "current-state": "exit",
+    "states": {
+        "exit": {
+            "image": "hallway-right"
+        }
+    }
+}

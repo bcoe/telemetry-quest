@@ -1,24 +1,10 @@
 {
     "objects": [
         "coffee-machine",
-        "cupboard"
+        "cupboard",
+        "left-exit-kitchen",
+        "right-exit-kitchen",
+        "sink"
     ],
-    "resources": {
-        "images": [
-            "kitchen",
-            "sprites/coffee-machine-no-cup",
-            "sprites/coffee-machine-with-cup",
-            "sprites/cupboard-door"
-        ],
-        "videos": [
-            "animations/pm"
-        ],
-         "sounds": [
-            "dialog/new-ai-feature",
-            "dialog/enclosed-vessel",
-            "dialog/lucky-mug",
-            "dialog/coffee-filters-missing"
-        ]
-    },
     "background": "kitchen"
 }

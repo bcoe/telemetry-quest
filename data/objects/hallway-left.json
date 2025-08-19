@@ -1,0 +1,25 @@
+{
+    "x": 340,
+    "y": 265,
+    "description": "Walk to printer room",
+    "actions": {
+        "exit": {
+            "poke": [
+                {
+                    "action": "setHoverText",
+                    "text": ""
+                },
+                {
+                    "action": "travel",
+                    "location": "printer"
+                }    
+            ]
+        }
+    },
+    "current-state": "exit",
+    "states": {
+        "exit": {
+            "image": "hallway-left"
+        }
+    }
+}

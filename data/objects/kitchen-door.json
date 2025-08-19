@@ -1,0 +1,25 @@
+{
+    "x": 405,
+    "y": 280,
+    "description": "Walk to kitchen",
+    "actions": {
+        "exit": {
+            "poke": [
+                {
+                    "action": "setHoverText",
+                    "text": ""
+                },
+                {
+                    "action": "travel",
+                    "location": "kitchen"
+                }    
+            ]
+        }
+    },
+    "current-state": "exit",
+    "states": {
+        "exit": {
+            "image": "kitchen-door"
+        }
+    }
+}

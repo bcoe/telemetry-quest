@@ -1,0 +1,29 @@
+{
+    "x": 355,
+    "y": 366,
+    "description": "Use sink",
+    "actions": {
+        "default": {
+            "poke": [
+                {
+                    "action": "dialog",
+                    "options": [
+                        {"text": "Wash your feet in sink.", "actions": []},
+                        {"text": "Spit in sink.", "actions": []},
+                        {"text": "Do nothing.", "actions": [
+                            {
+                                "action": "dismiss"
+                            }
+                        ]}
+                    ]
+                }
+            ]
+        }
+    },
+    "current-state": "default",
+    "states": {
+        "default": {
+            "image": "sink"
+        }
+    }
+}

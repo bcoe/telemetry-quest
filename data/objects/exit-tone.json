@@ -1,0 +1,21 @@
+{
+    "x": 400,
+    "y": 400,
+    "hover": false,
+    "actions": {
+        "exit": {
+            "poke": [
+                {
+                    "action": "travel",
+                    "location": "main"
+                }    
+            ]
+        }
+    },
+    "current-state": "exit",
+    "states": {
+        "exit": {
+            "image": "set-tone"
+        }
+    }
+}

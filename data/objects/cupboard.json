@@ -1,6 +1,7 @@
 {
     "x": 232,
     "y": 466,
+    "description": "Look in cupboard",
     "actions": {
         "has-cup": {
             "poke": [
@@ -22,6 +23,9 @@
     "current-state": "has-cup",
     "states": {
         "has-cup": {
+            "image": "cupboard-door"
+        },
+        "no-cup": {
             "image": "cupboard-door"
         }
     }

@@ -1,0 +1,7 @@
+{
+    "objects": [
+        "exit-main"
+    ],
+    "background": "main-screen",
+    "music": ["theme"]
+}

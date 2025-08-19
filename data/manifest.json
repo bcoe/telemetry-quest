@@ -1,0 +1,40 @@
+{
+        "images": [
+            "kitchen",
+            "sprites/coffee-machine-no-cup",
+            "sprites/coffee-machine-with-cup",
+            "sprites/cupboard-door",
+            "sprites/sink",
+            "desks",
+            "set-tone",
+            "main-screen",
+            "entrance",
+            "frontend",
+            "hallway",
+            "inventory/coffee-cup",
+            "inventory/inventory-background",
+            "sprites/up-down-exit",
+            "sprites/left-right-exit",
+            "console-click",
+            "sprites/kitchen-door",
+            "sprites/hallway-right",
+            "sprites/hallway-left",
+            "devops",
+            "cafeteria"
+        ],
+        "videos": [
+            "animations/pm",
+            "animations/opening"
+        ],
+         "sounds": [
+            "dialog/new-ai-feature",
+            "dialog/enclosed-vessel",
+            "dialog/lucky-mug",
+            "dialog/coffee-filters-missing",
+            "tone-setting",
+            "mood-setting",
+            "theme",
+            "success",
+            "walking"
+        ]
+}

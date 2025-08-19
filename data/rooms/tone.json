@@ -1,0 +1,14 @@
+{
+    "objects": [
+        "exit-tone"
+    ],
+    "background": "set-tone",
+    "music": ["tone-setting", "mood-setting"],
+    "video": {
+        "video": "opening",
+        "x": 250,
+        "y": 250,
+        "duration": 100000,
+        "scale": 3.0
+    }
+}

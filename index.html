@@ -9,65 +9,234 @@
       <div id="screen" class="cursor-poke" />
     </div>
     <script type="module">
+      // Load all resources at the outset:
+      import manifest from './data/manifest.json' with { type: "json" };;
+    
       import * as me from 'https://esm.run/melonjs';
       import { UISpriteElement } from 'https://esm.run/melonjs';
-      import desks from './data/rooms/desks.json' with { type: "json" };
       import kitchen from './data/rooms/kitchen.json' with { type: "json" };
+      import main from './data/rooms/main.json' with { type: "json" };
+      import tone from './data/rooms/tone.json' with { type: "json" };
+
+      // Entrance
+      import entrance from './data/rooms/entrance.json' with { type: "json" };
+      import rightExitEntrance from './data/objects/right-exit-entrance.json' with { type: "json" };
+
+      // Lounge
+      import lounge from './data/rooms/lounge.json' with { type: "json" };
+      import leftExitLounge from './data/objects/left-exit-lounge.json' with { type: "json" };
+      import rightExitLounge from './data/objects/right-exit-lounge.json' with { type: "json" };
+
+      // Frontend Pod
+      import frontend from './data/rooms/frontend.json' with { type: "json" };
+      import leftExitFrontend from './data/objects/left-exit-frontend.json' with { type: "json" };
+      import rightExitFrontend from './data/objects/right-exit-frontend.json' with { type: "json" };
+
+
+      // Hallway (liminal space)
+      import hallway from './data/rooms/hallway.json' with { type: "json" };
+      import bottomExitHallway from './data/objects/bottom-exit-hallway.json' with { type: "json" };
+      import kitchenDoor from './data/objects/kitchen-door.json' with { type: "json" };
+      import hallwayRight from './data/objects/hallway-right.json' with { type: "json" };
+      import hallwayLeft from './data/objects/hallway-left.json' with { type: "json" };
+
+      // Kitchen.
       import coffeeMachine from './data/objects/coffee-machine.json' with { type: "json" };
       import cupboard from './data/objects/cupboard.json' with { type: "json" };
+      import leftExitKitchen from './data/objects/left-exit-kitchen.json' with { type: "json" };
+      import rightExitKitchen from './data/objects/right-exit-kitchen.json' with { type: "json" };
+      import sink from './data/objects/sink.json' with { type: "json" };
+
+      // Cafeteria
+      import cafeteria from './data/rooms/cafeteria.json' with { type: "json" };
+      import bottomExitCafeteria from './data/objects/bottom-exit-cafeteria.json' with { type: "json" };
+
+      // DevOps
+      import devops from './data/rooms/devops.json' with { type: "json" };
+      import leftExitDevops from './data/objects/left-exit-devops.json' with { type: "json" };
+      import rightExitDevops from './data/objects/right-exit-devops.json' with { type: "json" };
+
+      // Loading screens.
+      import exitMain from './data/objects/exit-main.json' with { type: "json" };
+      import exitTone from './data/objects/exit-tone.json' with { type: "json" };
+
       const canvas = document.getElementById(('screen'));
 
       const WIDTH = 800;
       const HEIGHT = 800;
 
       let cursor = 'poke';
-      let CURSOR = 0; // 0 = poke, 1 = walk, 2 = talk
-      const CURSOR_CLASS = ['poke', 'walk', 'talk'];
 
-      let inventory;
+      // The items currently in the player's inventory.
+      const inventoryItems = [];
+
+      let gameConsole, inventory, videoPlayer;
 
       const objects = {
+        'bottom-exit-hallway': bottomExitHallway,
         'coffee-machine': coffeeMachine,
-        cupboard
+        'left-exit-kitchen': leftExitKitchen,
+        'right-exit-kitchen': rightExitKitchen,
+        'right-exit-entrance': rightExitEntrance,
+        'right-exit-lounge': rightExitLounge,
+        'right-exit-frontend': rightExitFrontend,
+        'left-exit-lounge': leftExitLounge,
+        'left-exit-frontend': leftExitFrontend,
+        'exit-main': exitMain,
+        'exit-tone': exitTone,
+        cupboard,
+        sink,
+        'kitchen-door': kitchenDoor,
+        'hallway-right': hallwayRight,
+        'hallway-left': hallwayLeft,
+        'right-exit-devops': rightExitDevops,
+        'left-exit-devops': leftExitDevops,
+        'bottom-exit-cafeteria': bottomExitCafeteria
       };
       const rooms = {
-        desks,
-        kitchen
+        lounge,
+        kitchen,
+        main,
+        tone,
+        entrance,
+        frontend,
+        hallway,
+        devops,
+        cafeteria
       };
-      const inventoryItems = [
-        'inventory/coffee-cup',
-        'inventory/inventory-background'
-      ];
-      const globalSoundEffects = [
-        'success',
-      ];
-
-     class Item extends UISpriteElement {
-        constructor(x, y, scaleX, scaleY, item) {
-            super(x, y, {
-              image: item,
-            });
-            this.item = item;
-        }
-        onOver(event) {
-          this.tint.setColor(144, 238, 144);
-        }
-        onOut(event) {
-          this.tint.setColor(255, 255, 255);
-        }
-        onClick(event) {
-          canvas.classList.remove(`cursor-${cursor}`);
-          cursor = this.item;
-          canvas.classList.add(`cursor-${cursor}`);
-        }
-     }
-
-      class Inventory extends UISpriteElement {
-        constructor(x, y, scaleX, scaleY) {
-          super(x, y, {
-            image: 'inventory-background',
+      class VideoPlayer {
+        startVideo(video, x, y, scaleX, scaleY, duration) {
+          this.stopVideo();
+          const vi = me.loader.getVideo(video);
+          this.videoSprite = new me.Sprite(x, y, {
+            image: vi,
+            anchorPoint: new me.Vector2d(0.5, 0.5),
           });
-          this.currentTransform.scale(scaleX, scaleY);
+          this.videoSprite.scale(scaleX, scaleY);
+          me.game.world.addChild(this.videoSprite);
+          this.videoSprite.play();
+          setTimeout(() => {
+            this.videoSprite.pause();
+          }, duration)
+        }
+        stopVideo() {
+          if (this.videoSprite) {
+            this.videoSprite.pause();
+            me.game.world.removeChild(this.videoSprite);
+            this.videoSprite = undefined;
+          }
+        }
+      }
+
+      class DialogSelection extends UISpriteElement {
+          constructor(x, y, scaleX, scaleY, selectionAction) {
+              super(x, y, {
+                image: 'console-click',
+              });
+              this.currentTransform.scale(scaleX, scaleY);
+              this.selectionAction = selectionAction;
+          }
+          onOver(event) {
+            this.tint.setColor(144, 238, 144);
+            if (this.selectionAction) {
+              gameConsole.setHoverText(this.selectionAction.text);
+            }
+          }
+          onOut(event) {
+            gameConsole.setHoverText('');
+            this.tint.setColor(255, 255, 255);
+          }
+          dismiss() {
+            gameConsole.dismiss();
+          }
+          onClick() {
+            for (const action of this.selectionAction.actions) {
+              this[action.action](action);
+            }
+          }
+      }
+
+      class Console {
+        constructor(scaleX, scaleY) {
+          this.hoverTextX = 50;
+          this.hoverTextY = 748;
+          this.selectionX = 235;
+          this.selectionY = 620;
+          this.scaleX = scaleX;
+          this.scaleY = scaleY;
+          this.dialogOptions = [];
+          this.dialogSelection = [];
+          this.dialogOpen = false;
+
+          // The hover text in the console:
+          this.hoverText = new me.Text(this.hoverTextX, this.hoverTextY, {
+            font: "Arial",
+            size: 16,
+            fillStyle: "#FFFFFF",
+          });
+          me.game.world.addChild(this.hoverText);
+        }
+        setDialogOptions(options) {
+          if (!this.dialogSelection[0]) {
+            for (let i = 0; i < 3; i++) {
+              const selection = new DialogSelection(this.selectionX, this.selectionY + (i * 45), this.scaleX, this.scaleY, undefined);
+              this.dialogSelection.push(selection);
+              me.game.world.addChild(selection);
+              const text = new me.Text(this.selectionX - 185, this.selectionY - 12 + (i * 45), {
+                font: "Arial",
+                size: 16,
+                fillStyle: "#FFFFFF",
+              });
+              this.dialogOptions.push(text);
+              me.game.world.addChild(text);
+            }
+          }
+          options.forEach((option, i) => {
+            this.dialogSelection[i].selectionAction = option;
+            this.dialogOptions[i].setText(option.text);
+          });
+          this.dialogOpen = true;
+          videoPlayer.startVideo('pm', 150, 150, this.scaleX, this.scaleY, 5000);
+        }
+        dismiss() {
+          for (let i = 0; i < 3; i++) {
+            this.dialogSelection[i].selectionAction = undefined;
+            this.dialogOptions[i].setText('');
+          }
+          videoPlayer.stopVideo();
+          this.dialogOpen = false;
+        }
+        setHoverText(text) {
+          this.hoverText.setText(text);
+        }
+      }
+
+      class Item extends UISpriteElement {
+          constructor(x, y, scaleX, scaleY, item) {
+              super(x, y, {
+                image: item,
+              });
+              this.item = item;
+          }
+          onOver(event) {
+            if (!gameConsole.dialogOpen) {
+              this.tint.setColor(144, 238, 144);
+            }
+          }
+          onOut(event) {
+            this.tint.setColor(255, 255, 255);
+          }
+          onClick(event) {
+            if (!gameConsole.dialogOpen) {
+              canvas.classList.remove(`cursor-${cursor}`);
+              cursor = this.item;
+              canvas.classList.add(`cursor-${cursor}`);
+            }
+          }
+      }
+      
+      class Inventory {
+        constructor(x, y, scaleX, scaleY) {
           this.x = x;
           this.y = y;
           this.items = [];
@@ -76,6 +245,9 @@
           this.scaleY = scaleY;
           this.spacingX = 100;
           this.spacingY = 74;
+          for (const item of inventoryItems) {
+            this.addItem(item);
+          }
         }
         addItem(item) {
           const y = parseInt(this.items.length / 3) * this.spacingY;
@@ -83,18 +255,23 @@
           const itemSprite = new Item(x + this.x - 96, y + this.y - 40, this.scaleX, this.scaleY, item);
           this.items.push(itemSprite);
           me.game.world.addChild(itemSprite);
+          if (!inventoryItems.includes(item)) {
+            inventoryItems.push(item);
+          }
         }
         removeItem(item) {
-          console.info(item);
-          const itemSprite = this.items.find(i => {
-            return i.item === item;
-          })
-          console.info(itemSprite);
-          if (itemSprite) {
-            me.game.world.removeChild(itemSprite);
-            canvas.classList.remove(`cursor-${cursor}`);
-            cursor = CURSOR_CLASS[CURSOR];
-            canvas.classList.add(`cursor-${cursor}`);
+          const itemIndex = inventoryItems.indexOf(item);
+          if (itemIndex !== -1) {
+            inventoryItems.splice(itemIndex, 1);
+            for (const itemSprite of this.items) {
+              me.game.world.removeChild(itemSprite);
+              canvas.classList.remove(`cursor-${cursor}`);
+              cursor = 'poke';
+              canvas.classList.add(`cursor-${cursor}`);
+            }
+            for (const item of inventoryItems) {
+              this.addItem(item);
+            }
           }
         }
       }
@@ -109,10 +286,20 @@
             this.data = data;
         }
         onOver(event) {
+          if (gameConsole.dialogOpen) return;
+
+          // You can configure images not to have a hover effect,
+          // useful for the opening scene.
+          if (this.data.hover === false) return;
           this.tint.setColor(144, 238, 144);
+          console.info(this.data.description);
+          if (this.data.description) {
+            gameConsole.setHoverText(this.data.description);
+          }
         }
         onOut(event) {
           this.tint.setColor(255, 255, 255);
+          gameConsole.setHoverText('');
         }
         changeState(action) {
           this.data['current-state'] = action.state;
@@ -129,7 +316,20 @@
         removeItem(action) {
           inventory.removeItem(action.item);
         }
+        setHoverText(action) {
+          gameConsole.setHoverText(action.text);
+        }
+        async travel(action) {
+          me.audio.stop();
+          me.audio.play('walking');
+          const map = new Map(rooms[action.location]);
+          map.load();
+        }
+        dialog(action) {
+          gameConsole.setDialogOptions(action.options);
+        }
         onClick(event) {
+          if (gameConsole.dialogOpen) return;
           if (this.data.actions?.[this.data['current-state']]?.[cursor]) {
             for (const action of this.data.actions[this.data['current-state']][cursor]) {
               this[action.action](action);
@@ -138,76 +338,74 @@
         }
       };
 
+      class BackgroundSprite extends UISpriteElement {
+        constructor(x, y, image, anchorPoint) {
+          super(x, y, {
+            image,
+            anchorPoint
+          });
+        }
+      }
+
+      let exitEventMouseOverListener, exitEventClickListener;
       class Map {
         constructor(data) {
           this.data = data;
           this.images = [];
           this.sounds = [];
         }
-        async load() {
-          if (me.game.world) {
-            for (const child of me.game.world.getChildren()) {
-              me.game.world.removeChild(child);
+        load() {
+          me.game.reset();
+
+          const background = new BackgroundSprite(
+            me.game.viewport.width / 2 ,
+            me.game.viewport.height / 2, 
+            this.data.background,
+            new me.Vector2d(0.5, 0.5),
+          );
+          const scaleX = WIDTH / background.width;
+          const scaleY = HEIGHT / background.height;
+          background.currentTransform.scale(scaleX, scaleY);
+          me.game.world.addChild(background);
+
+          // Load all sprites in the scene:
+          for (const object of this.data.objects) {
+            const obj = new Sprite(scaleX, scaleY, objects[object]);
+            me.game.world.addChild(obj);
+          }
+          inventory = new Inventory(595, 697, scaleX, scaleY);
+          gameConsole = new Console(scaleX, scaleY);
+          videoPlayer = new VideoPlayer();
+          // Play music as this screen loads.
+          if (this.data.music) {
+            let first = true;
+            for (const music of this.data.music) {
+              if (first) {
+                me.audio.play(music);
+              } else {
+                me.audio.play(music, false, null, 0.3)
+              }
+              first = false;
             }
           }
-          me.loader.unloadAll();
-          const resources = [];
-          for (const image of [...this.data.resources.images, ...inventoryItems]) {
-            const splitImage = image.split('/');
-            resources.push({
-              name: splitImage[splitImage.length - 1],
-              type: "image",
-              src: `data/${image}.png`,
-            })
+          // Play any video for cut scenes.
+          if (this.data.video) {
+            videoPlayer.startVideo(
+              this.data.video.video,
+              this.data.video.x,
+              this.data.video.y,
+              scaleX * this.data.video.scale,
+              scaleY * this.data.video.scale,
+              this.data.video.duration,
+            )
           }
-          for (const video of this.data.resources.videos) {
-            resources.push({
-              name: video,
-              type: "video",
-              src: `data/${video}.mp4`,
-            })
-          }
-          for (const audio of [...this.data.resources.sounds, ...globalSoundEffects]) {
-            resources.push({
-              name: audio,
-              type: "audio",
-              src: `data/`,
-            })
-          }
-          return new Promise((resolve) => {   
-              me.loader.preload(resources, () => {
-                // Set the map background:
-                const background = new me.Sprite(
-                  me.game.viewport.width / 2 ,
-                  me.game.viewport.height / 2, {
-                  image : this.data.background,
-                  anchorPoint : new me.Vector2d(0.5, 0.5),
-                });
-                const scaleX = WIDTH / background.width;
-                const scaleY = HEIGHT / background.height;
-                background.currentTransform.scale(scaleX, scaleY);
-                me.game.world.addChild(background);
-
-                // Load all sprites in the scene:
-                for (const object of this.data.objects) {
-                  const obj = new Sprite(scaleX, scaleY, objects[object]);
-                  me.game.world.addChild(obj);
-                }
-                if (!inventory) {
-                  inventory = new Inventory(595, 697, scaleX, scaleY);
-                }
-                me.game.world.addChild(inventory);
-                return resolve();
-            });
-          });     
-        }
+        }     
       }
 
       canvas.addEventListener('contextmenu', function(ev) {
         ev.preventDefault();
         canvas.classList.remove(`cursor-${cursor}`);
-        CURSOR = (CURSOR + 1) % CURSOR_CLASS.length;
-        cursor = CURSOR_CLASS[CURSOR];
+        cursor = 'poke';
         canvas.classList.add(`cursor-${cursor}`);
         return false;
       }, false);
@@ -218,9 +416,38 @@
           return;
         }
         me.audio.init("wav");
-        const m1 = new Map(rooms.kitchen);
-        await m1.load();        
+        const resources = [];
+        for (const image of manifest.images) {
+          const splitImage = image.split('/');
+          resources.push({
+            name: splitImage[splitImage.length - 1],
+            type: "image",
+            src: `data/${image}.png`,
+          })
+        }
+        for (const video of manifest.videos) {
+          const splitVideo = video.split('/');
+          resources.push({
+            name: splitVideo[splitVideo.length - 1],
+            type: "video",
+            src: `data/${video}.mp4`,
+            autoplay: false,
+            loop: false
+          })
+        }
+        for (const audio of manifest.sounds) {
+          resources.push({
+            name: audio,
+            type: "audio",
+            src: `data/`,
+          })
+        }
+        me.loader.preload(resources, () => {
+          const m1 = new Map(rooms.entrance);
+          m1.load();
+        });
       });
+      // //       1530x1040
     </script>
   </body>
 </html>
