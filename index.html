@@ -502,7 +502,9 @@
               me.game.world.addChild(obj);
             }
           }
-          inventory = new Inventory(595, 697, scaleX, scaleY);
+          if (this.data.inventory !== false) {
+            inventory = new Inventory(595, 697, scaleX, scaleY);
+          }
           gameConsole = new Console(scaleX, scaleY);
           videoPlayer = new VideoPlayer();
           // Play music as this screen loads.
