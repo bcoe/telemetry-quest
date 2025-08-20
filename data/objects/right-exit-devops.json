@@ -1,10 +1,24 @@
 {
     "x": 790,
     "y": 300,
-    "description": "Walk to office lounge area",
+    "description": "Walk to server room",
+    "cursor": "walk",
     "actions": {
-        "exit": {
-            "poke": [
+        "blocked": {
+            "walk": [
+                {
+                    "action": "playSound",
+                    "sound": "dialog/no-server-room"
+                },
+                {
+                    "action": "playVideo",
+                    "video": "pm",
+                    "duration": 5000
+                }
+            ]
+        },
+        "unblocked": {
+            "walk": [
                 {
                     "action": "setHoverText",
                     "text": ""
@@ -16,9 +30,12 @@
             ]
         }
     },
-    "current-state": "exit",
+    "current-state": "blocked",
     "states": {
-        "exit": {
+        "blocked": {
+            "image": "left-right-exit"
+        },
+        "unblocked": {
             "image": "left-right-exit"
         }
     }

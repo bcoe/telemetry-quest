@@ -1,7 +1,8 @@
 {
     "objects": [
         "left-exit-lounge",
-        "right-exit-lounge"
+        "right-exit-lounge",
+        "construction-paper"
     ],
     "background": "desks"
 }

@@ -1,0 +1,67 @@
+{
+    "x": 210,
+    "y": 365,
+    "description": "User input tray",
+    "actions": {
+        "no-paper-warn": {
+            "construction-paper": [
+                {
+                    "action": "playSound",
+                    "sound": "dialog/wrong-paper"
+                },
+                {
+                    "action": "changeState",
+                    "state": "no-paper"
+                }      
+            ],
+            "poke": [{
+                "action": "playSound",
+                "sound": "dialog/top-of-the-line-printer"
+            }]
+        },
+        "no-paper": {
+            "construction-paper": [
+                {
+                    "action": "changeState",
+                    "state": "has-paper"
+                },
+                {
+                    "action": "removeItem",
+                    "item": "construction-paper"
+                },
+                {
+                    "action": "playSound",
+                    "sound": "success"
+                },
+                {
+                    "action": "setState",
+                    "object": "my-computer",
+                    "state": "paper-in-printer"
+                }
+            ],
+            "poke": [{
+                "action": "playSound",
+                "sound": "dialog/top-of-the-line-printer"
+            }]
+        },
+        "has-paper": {
+            "poke": [{
+                "action": "playSound",
+                "sound": "dialog/printer-loaded"
+            }]
+        }
+    },
+    "current-state": "no-paper-warn",
+    "states": {
+        "no-paper-warn": {
+            "image": "load-paper"
+        },
+        "no-paper": {
+            "image": "load-paper"
+        },
+        "has-paper": {
+            "image": "load-paper"
+        }
+    }
+}
+

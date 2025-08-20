@@ -1,0 +1,46 @@
+{
+    "x": 660,
+    "y": 360,
+    "description": "Talk to Steve, the head of IT",
+    "actions": {
+        "present": {
+            "poke": [
+                {
+                    "action": "dialog",
+                    "video": {
+                        "video": "pm",
+                        "duration": 1000
+                    },
+                    "options": [
+                        {"text": "How's your week going.", "actions": [
+                            {
+                                "action": "playSound",
+                                "sound": "dialog/printer-jam-hint"
+                            },
+                            {
+                                "action": "playVideo",
+                                "video": "pm",
+                                "duration": 12000
+                            }        
+                        ]},
+                        {"text": "Thanks Steve.", "actions": [
+                            {
+                                "action": "dismiss"
+                            }
+                        ]}
+                    ]
+                },
+                {
+                    "action": "playSound",
+                    "sound": "dialog/busy-it-guy"
+                }
+            ]
+        }
+    },
+    "current-state": "present",
+    "states": {
+        "present": {
+            "image": "it-guy"
+        }
+    }
+}

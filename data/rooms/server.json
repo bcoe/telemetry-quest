@@ -1,6 +1,7 @@
 {
     "objects": [
-        "left-exit-server"
+        "left-exit-server",
+        "router"
     ],
     "background": "server"
 }

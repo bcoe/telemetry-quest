@@ -1,0 +1,86 @@
+{
+    "x": 610,
+    "y": 300,
+    "description": "Use my computer",
+    "actions": {
+        "start": {
+            "poke": [
+                {
+                    "action": "dialog",
+                    "video": {
+                        "video": "computer"
+                    },
+                    "options": [
+                        {"text": "Add sentry error tracking to application.", "actions": [
+                            {
+                                "action": "playSound",
+                                "sound": "dialog/not-awake"
+                            }
+                        ]},
+                        {"text": "Do nothing.", "actions": [
+                            {
+                                "action": "dismiss"
+                            }
+                        ]}
+                    ]
+                },
+                {
+                    "action": "playSound",
+                    "sound": "dialog/keyboard"
+                }
+            ]
+        },
+        "paper-in-printer": {
+            "poke": [
+                {
+                    "action": "dialog",
+                    "video": {
+                        "video": "computer"
+                    },
+                    "options": [
+                        {"text": "Add sentry error tracking to application.", "actions": [
+                            {
+                                "action": "playSound",
+                                "sound": "dialog/not-awake"
+                            }
+                        ]},
+                        {"text": "Print software design proposal.", "actions": [
+                            {
+                                "action": "setState",
+                                "object": "it-guy",
+                                "state": "gone"
+                            },
+                            {
+                                "action": "setState",
+                                "object": "right-exit-devops",
+                                "state": "unblocked"
+                            },
+                            {
+                                "action": "playSound",
+                                "sound": "dialog/paper-jam"
+                            }
+                        ]},
+                        {"text": "Do nothing.", "actions": [
+                            {
+                                "action": "dismiss"
+                            }
+                        ]}
+                    ]
+                },
+                {
+                    "action": "playSound",
+                    "sound": "dialog/keyboard"
+                }
+            ]   
+        }
+    },
+    "current-state": "start",
+    "states": {
+        "start": {
+            "image": "my-computer"
+        },
+        "paper-in-printer": {
+            "image": "my-computer"
+        }
+    }
+}

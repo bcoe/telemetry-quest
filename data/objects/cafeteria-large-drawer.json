@@ -1,29 +1,29 @@
 {
-    "x": 232,
-    "y": 466,
-    "description": "Look in cupboard",
+    "x": 714,
+    "y": 393,
+    "description": "Look in drawer",
     "actions": {
-        "has-cup": {
+        "has-fork": {
             "poke": [
                 {
                     "action": "changeState",
-                    "state": "no-cup"
+                    "state": "no-fork"
                 },
                 {
                     "action": "addInventory",
-                    "item": "coffee-cup"
+                    "item": "fork"
                 },
                 {
                     "action": "playSound",
-                    "sound": "dialog/lucky-mug"
+                    "sound": "dialog/find-fork"
                 }
             ]
         }
     },
-    "current-state": "has-cup",
+    "current-state": "has-fork",
     "states": {
-        "has-cup": {
-            "image": "cupboard-door"
+        "has-fork": {
+            "image": "cafeteria-large-drawer"
         }
     }
 }

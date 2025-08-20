@@ -1,7 +1,8 @@
 {
     "objects": [
         "left-exit-frontend",
-        "right-exit-frontend"
+        "right-exit-frontend",
+        "my-computer"
     ],
     "background": "frontend"
 }

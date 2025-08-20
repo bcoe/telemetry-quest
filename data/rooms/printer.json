@@ -1,6 +1,7 @@
 {
     "objects": [
-        "right-exit-printer"
+        "right-exit-printer",
+        "load-paper"
     ],
     "background": "printer"
 }

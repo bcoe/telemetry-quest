@@ -1,10 +1,11 @@
 {
     "x": 0,
     "y": 300,
+    "cursor": "walk",
     "description": "Walk to DevOps / IT pod",
     "actions": {
         "exit": {
-            "poke": [
+            "walk": [
                 {
                     "action": "setHoverText",
                     "text": ""

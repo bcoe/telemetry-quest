@@ -24,7 +24,7 @@
             ]
         }
     },
-    "current-state": "exit",
+    "current-state": "all-hands",
     "states": {
         "exit": {
             "image": "entrance-door"

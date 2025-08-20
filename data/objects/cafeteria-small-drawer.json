@@ -1,29 +1,29 @@
 {
-    "x": 232,
-    "y": 466,
-    "description": "Look in cupboard",
+    "x": 630,
+    "y": 351,
+    "description": "Look in drawer",
     "actions": {
-        "has-cup": {
+        "has-chopsticks": {
             "poke": [
                 {
                     "action": "changeState",
-                    "state": "no-cup"
+                    "state": "no-chopsticks"
                 },
                 {
                     "action": "addInventory",
-                    "item": "coffee-cup"
+                    "item": "chopsticks"
                 },
                 {
                     "action": "playSound",
-                    "sound": "dialog/lucky-mug"
+                    "sound": "dialog/find-chopsticks"
                 }
             ]
         }
     },
-    "current-state": "has-cup",
+    "current-state": "has-chopsticks",
     "states": {
-        "has-cup": {
-            "image": "cupboard-door"
+        "has-chopsticks": {
+            "image": "cafeteria-small-drawer"
         }
     }
 }

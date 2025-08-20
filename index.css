@@ -15,26 +15,38 @@ body {
   
     /* Allow canvas to hit the edges of the browser viewport. */
     margin: 0;
-  }
-  
-  #screen canvas {
-    margin: auto;
-    /* Hide the gap for font descenders. */
-    display: block;
-  }
+}
 
-  #screen.cursor-poke canvas {
-    cursor: url('data/poke.png'), auto;
-  }
+#screen canvas {
+  margin: auto;
+  /* Hide the gap for font descenders. */
+  display: block;
+}
 
-  #screen.cursor-walk canvas {
-    cursor: url('data/walk.png'), auto;
-  }
+#screen.cursor-poke canvas {
+  cursor: url('data/poke.png'), auto;
+}
 
-  #screen.cursor-talk canvas {
-    cursor: url('data/talk.png'), auto;
-  }
+#screen.cursor-walk canvas {
+  cursor: url('data/walk.png'), auto;
+}
 
-  #screen.cursor-coffee-cup canvas {
-    cursor: url('data/inventory/coffee-cup.png'), auto;
-  }
+#screen.cursor-talk canvas {
+  cursor: url('data/talk.png'), auto;
+}
+
+#screen.cursor-coffee-cup canvas {
+  cursor: url('data/inventory/coffee-cup.png'), auto;
+}
+
+#screen.cursor-construction-paper canvas {
+  cursor: url('data/inventory/construction-paper.png'), auto;
+}
+
+#screen.cursor-fork canvas {
+  cursor: url('data/inventory/fork.png'), auto;
+}
+
+#screen.cursor-chopsticks canvas {
+  cursor: url('data/inventory/chopsticks.png'), auto;
+}

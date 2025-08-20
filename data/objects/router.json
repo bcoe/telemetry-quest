@@ -1,0 +1,55 @@
+{
+    "x": 150,
+    "y": 466,
+    "description": "Use router",
+    "actions": {
+        "on": {
+            "poke": [
+                {
+                    "action": "playSound",
+                    "sound": "dialog/reset-button"
+                }
+            ],
+            "chopsticks": [
+                {
+                    "action": "playSound",
+                    "sound": "dialog/router-resetting"
+                },
+                {
+                    "action": "changeState",
+                    "state": "resetting"
+                },
+                {
+                    "action": "removeItem",
+                    "item": "chopsticks"
+                },
+                {
+                    "action": "playSound",
+                    "sound": "success"
+                },
+                {
+                    "action": "setState",
+                    "object": "entrance-door",
+                    "state": "exit"
+                }
+            ]
+        },
+        "resetting": {
+            "poke": [
+                {
+                    "action": "playSound",
+                    "sound": "dialog/router-currently-resetting"
+                }
+            ]
+        }
+    },
+    "current-state": "on",
+    "states": {
+        "on": {
+            "image": "router"
+        },
+        "resetting": {
+            "image": "router"
+        }
+    }
+}

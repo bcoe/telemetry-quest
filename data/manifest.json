@@ -35,11 +35,21 @@
             "storage",
             "sprites/exit-storage",
             "sprites/hallway-storage",
-            "click-anywhere"
+            "click-anywhere",
+            "inventory/construction-paper",
+            "inventory/chopsticks",
+            "inventory/fork",
+            "sprites/load-paper",
+            "sprites/my-computer",
+            "sprites/it-guy",
+            "sprites/router",
+            "sprites/cafeteria-large-drawer",
+            "sprites/cafeteria-small-drawer"
         ],
         "videos": [
             "animations/pm",
-            "animations/opening"
+            "animations/opening",
+            "animations/computer"
         ],
          "sounds": [
             "dialog/new-ai-feature",
@@ -53,6 +63,21 @@
             "walking",
             "dialog/sick-ride",
             "dialog/exit-during-all-hands",
-            "dialog/getting-started"
+            "dialog/getting-started",
+            "dialog/team-building-paper",
+            "dialog/wrong-paper",
+            "dialog/top-of-the-line-printer",
+            "dialog/printer-loaded",
+            "dialog/keyboard",
+            "dialog/not-awake",
+            "dialog/paper-jam",
+            "dialog/reset-button",
+            "dialog/find-chopsticks",
+            "dialog/find-fork",
+            "dialog/router-resetting",
+            "dialog/router-currently-resetting",
+            "dialog/no-server-room",
+            "dialog/printer-jam-hint",
+            "dialog/busy-it-guy"
         ]
 }

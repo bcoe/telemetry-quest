@@ -1,6 +1,8 @@
 {
     "objects": [
-        "right-exit-cafeteria"
+        "right-exit-cafeteria",
+        "cafeteria-large-drawer",
+        "cafeteria-small-drawer"
     ],
     "background": "cafeteria"
 }

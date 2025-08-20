@@ -37,11 +37,13 @@
       import lounge from './data/rooms/lounge.json' with { type: "json" };
       import leftExitLounge from './data/objects/left-exit-lounge.json' with { type: "json" };
       import rightExitLounge from './data/objects/right-exit-lounge.json' with { type: "json" };
+      import constructionPaper from './data/objects/construction-paper.json' with { type: "json" };
 
       // Frontend Pod
       import frontend from './data/rooms/frontend.json' with { type: "json" };
       import leftExitFrontend from './data/objects/left-exit-frontend.json' with { type: "json" };
       import rightExitFrontend from './data/objects/right-exit-frontend.json' with { type: "json" };
+      import myComputer from './data/objects/my-computer.json' with { type: "json" };
 
       // Hallway (liminal space)
       import hallway from './data/rooms/hallway.json' with { type: "json" };
@@ -58,6 +60,7 @@
       // Printer
       import printer from './data/rooms/printer.json' with { type: "json" };
       import rightExitPrinter from './data/objects/right-exit-printer.json' with { type: "json" };
+      import loadPaper from './data/objects/load-paper.json' with { type: "json" };
 
       // Kitchen.
       import coffeeMachine from './data/objects/coffee-machine.json' with { type: "json" };
@@ -69,15 +72,19 @@
       // Cafeteria
       import cafeteria from './data/rooms/cafeteria.json' with { type: "json" };
       import rightExitCafeteria from './data/objects/right-exit-cafeteria.json' with { type: "json" };
+      import cafeteriaLargeDrawer from './data/objects/cafeteria-large-drawer.json' with { type: "json" };
+      import cafeteriaSmallDrawer from './data/objects/cafeteria-small-drawer.json' with { type: "json" };
 
       // DevOps
       import devops from './data/rooms/devops.json' with { type: "json" };
       import leftExitDevops from './data/objects/left-exit-devops.json' with { type: "json" };
       import rightExitDevops from './data/objects/right-exit-devops.json' with { type: "json" };
+      import itGuy from './data/objects/it-guy.json' with { type: "json" };
 
       // Server
       import server from './data/rooms/server.json' with { type: "json" };
       import leftExitServer from './data/objects/left-exit-server.json' with { type: "json" };
+      import router from './data/objects/router.json' with { type: "json" };
 
       // Loading screens.
       import exitClick from './data/objects/exit-click.json' with { type: "json" };
@@ -93,11 +100,18 @@
       const HEIGHT = 800;
 
       let cursor = 'poke';
+      let draggingItem = false;
 
       // The items currently in the player's inventory.
       const inventoryItems = [];
 
       let gameConsole, inventory, videoPlayer;
+
+      function setCursor(cur) {
+        canvas.classList.remove(`cursor-${cursor}`);
+        cursor = cur;
+        canvas.classList.add(`cursor-${cursor}`);
+      }
 
       const objects = {
         'left-exit-hallway': leftExitHallway,
@@ -130,7 +144,14 @@
         'exit-store': exitStore,
         'hallway-storage': hallwayStorage,
         'exit-storage': exitStorage,
-        'exit-click': exitClick
+        'exit-click': exitClick,
+        'construction-paper': constructionPaper,
+        'load-paper': loadPaper,
+        'my-computer': myComputer,
+        'it-guy': itGuy,
+        router,
+        'cafeteria-large-drawer': cafeteriaLargeDrawer,
+        'cafeteria-small-drawer': cafeteriaSmallDrawer
       };
       const rooms = {
         lounge,
@@ -150,7 +171,7 @@
         click
       };
       class VideoPlayer {
-        startVideo(video, x, y, scaleX, scaleY, duration) {
+        startVideo(video, x, y, scaleX, scaleY, duration, closeOnFinish = false) {
           this.stopVideo();
           const vi = me.loader.getVideo(video);
           this.videoSprite = new me.Sprite(x, y, {
@@ -160,11 +181,15 @@
           this.videoSprite.scale(scaleX, scaleY);
           me.game.world.addChild(this.videoSprite);
           this.videoSprite.play();
-          setTimeout(() => {
-            this.videoSprite.pause();
+          clearTimeout(this.timer);
+          console.log(duration);
+          this.timer = setTimeout(() => {
+            if (this.videoSprite) this.videoSprite.pause();
+            if (closeOnFinish) this.stopVideo();
           }, duration)
         }
         stopVideo() {
+          clearTimeout(this.timer);
           if (this.videoSprite) {
             this.videoSprite.pause();
             me.game.world.removeChild(this.videoSprite);
@@ -194,6 +219,19 @@
           dismiss() {
             gameConsole.dismiss();
           }
+          setState(action) {
+            objects[action.object]['current-state'] = action.state;
+          }
+          playSound(sound) {
+            me.audio.stop();
+            me.audio.play(sound.sound);
+          }
+          playVideo(video) {
+            videoPlayer.videoSprite.play();
+            setTimeout(() => {
+              videoPlayer.videoSprite.pause();
+            }, video.duration)
+          }
           onClick() {
             for (const action of this.selectionAction.actions) {
               this[action.action](action);
@@ -221,7 +259,7 @@
           });
           me.game.world.addChild(this.hoverText);
         }
-        setDialogOptions(options) {
+        setDialogOptions(options, videoSettings) {
           if (!this.dialogSelection[0]) {
             for (let i = 0; i < 3; i++) {
               const selection = new DialogSelection(this.selectionX, this.selectionY + (i * 45), this.scaleX, this.scaleY, undefined);
@@ -241,7 +279,7 @@
             this.dialogOptions[i].setText(option.text);
           });
           this.dialogOpen = true;
-          videoPlayer.startVideo('pm', 150, 150, this.scaleX, this.scaleY, 5000);
+          videoPlayer.startVideo(videoSettings.video, 150, 150, this.scaleX, this.scaleY, 5000);
         }
         dismiss() {
           for (let i = 0; i < 3; i++) {
@@ -273,9 +311,8 @@
           }
           onClick(event) {
             if (!gameConsole.dialogOpen) {
-              canvas.classList.remove(`cursor-${cursor}`);
-              cursor = this.item;
-              canvas.classList.add(`cursor-${cursor}`);
+              draggingItem = true;
+              setCursor(this.item);
             }
           }
       }
@@ -310,10 +347,10 @@
             inventoryItems.splice(itemIndex, 1);
             for (const itemSprite of this.items) {
               me.game.world.removeChild(itemSprite);
-              canvas.classList.remove(`cursor-${cursor}`);
-              cursor = 'poke';
-              canvas.classList.add(`cursor-${cursor}`);
+              draggingItem = false;
+              setCursor('poke');
             }
+            this.items = [];
             for (const item of inventoryItems) {
               this.addItem(item);
             }
@@ -323,26 +360,35 @@
 
       class Sprite extends UISpriteElement {
         constructor(scaleX, scaleY, data) {
+            const image = data.states?.[data['current-state']]?.image
             super(data.x, data.y, {
-              image: data.states[data['current-state']].image,
+              image: image ? image : 'coffee-cup',
             });
             this.currentTransform.scale(scaleX, scaleY);
             this.actions = data.actions;
             this.data = data;
+            this.scaleX = scaleX;
+            this.scaleY = scaleY;
+            this.visible = image ? true : false;
         }
         onOver(event) {
           if (gameConsole.dialogOpen) return;
+          if (this.data.cursor && !draggingItem) {
+            setCursor(this.data.cursor);
+          }
 
           // You can configure images not to have a hover effect,
           // useful for the opening scene.
           if (this.data.hover === false) return;
           this.tint.setColor(144, 238, 144);
-          console.info(this.data.description);
           if (this.data.description) {
             gameConsole.setHoverText(this.data.description);
           }
         }
         onOut(event) {
+          if (this.data.cursor && !draggingItem) {
+            setCursor('poke');
+          }
           this.tint.setColor(255, 255, 255);
           gameConsole.setHoverText('');
         }
@@ -350,6 +396,13 @@
           this.data['current-state'] = action.state;
           if (this.data.states[action.state]?.image) {
             this.image = this.data.states[action.state].image;
+            if (!this.visible) {
+              this.visible = true;
+              me.game.world.addChild(this);
+            }
+          } else {
+            this.visible = false;
+            me.game.world.removeChild(this);
           }
         }
         addInventory(action) {
@@ -357,6 +410,10 @@
         }
         playSound(sound) {
           me.audio.play(sound.sound);
+        }
+        playVideo(video) {
+          videoPlayer.stopVideo();
+          videoPlayer.startVideo(video.video, 150, 150, this.scaleX, this.scaleY, video.duration, true);
         }
         removeItem(action) {
           inventory.removeItem(action.item);
@@ -367,11 +424,15 @@
         async travel(action) {
           me.audio.stop();
           me.audio.play('walking');
+          setCursor('poke');
           const map = new Map(rooms[action.location]);
           map.load();
         }
         dialog(action) {
-          gameConsole.setDialogOptions(action.options);
+          gameConsole.setDialogOptions(action.options, action.video);
+        }
+        setState(action) {
+          objects[action.object]['current-state'] = action.state;
         }
         onClick(event) {
           if (gameConsole.dialogOpen) return;
@@ -416,7 +477,9 @@
           // Load all sprites in the scene:
           for (const object of this.data.objects) {
             const obj = new Sprite(scaleX, scaleY, objects[object]);
-            me.game.world.addChild(obj);
+            if (obj.visible) {
+              me.game.world.addChild(obj);
+            }
           }
           inventory = new Inventory(595, 697, scaleX, scaleY);
           gameConsole = new Console(scaleX, scaleY);
@@ -450,9 +513,8 @@
 
       canvas.addEventListener('contextmenu', function(ev) {
         ev.preventDefault();
-        canvas.classList.remove(`cursor-${cursor}`);
-        cursor = 'poke';
-        canvas.classList.add(`cursor-${cursor}`);
+        draggingItem = false;
+        setCursor('poke');
         return false;
       }, false);
 

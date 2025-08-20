@@ -1,10 +1,10 @@
 {
     "objects": [
-        "right-exit-entrance",
         "entrance-door",
         "entrance-closet-door",
         "entrance-scooter",
-        "entrance-sweater"
+        "entrance-sweater",
+        "right-exit-entrance"
     ],
     "background": "entrance",
     "music": ["dialog/getting-started"],

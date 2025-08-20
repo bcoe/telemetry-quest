@@ -1,0 +1,29 @@
+{
+    "x": 290,
+    "y": 495,
+    "description": "Use construction paper",
+    "actions": {
+        "no-construction-paper": {
+            "poke": [
+                {
+                    "action": "changeState",
+                    "state": "has-construction-paper"
+                },
+                {
+                    "action": "addInventory",
+                    "item": "construction-paper"
+                },
+                {
+                    "action": "playSound",
+                    "sound": "dialog/team-building-paper"
+                }
+            ]
+        }
+    },
+    "current-state": "no-construction-paper",
+    "states": {
+        "no-construction-paper": {
+            "image": "construction-paper"
+        }
+    }
+}
