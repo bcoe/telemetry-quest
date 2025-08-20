@@ -1,0 +1,25 @@
+{
+    "x": 122,
+    "y": 384,
+    "description": "Go back to SourceSpin office",
+    "actions": {
+        "exit": {
+            "poke": [
+                {
+                    "action": "setHoverText",
+                    "text": ""
+                },
+                {
+                    "action": "travel",
+                    "location": "entrance"
+                }    
+            ]
+        }
+    },
+    "current-state": "exit",
+    "states": {
+        "exit": {
+            "image": "office-door"
+        }
+    }
+}

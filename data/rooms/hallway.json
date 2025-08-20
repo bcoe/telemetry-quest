@@ -1,9 +1,10 @@
 {
     "objects": [
-        "bottom-exit-hallway",
+        "left-exit-hallway",
         "kitchen-door",
         "hallway-right",
-        "hallway-left"
+        "hallway-left",
+        "hallway-storage"
     ],
     "background": "hallway"
 }

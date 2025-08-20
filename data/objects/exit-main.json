@@ -7,7 +7,7 @@
             "poke": [
                 {
                     "action": "travel",
-                    "location": "lounge"
+                    "location": "entrance"
                 }    
             ]
         }

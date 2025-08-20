@@ -1,0 +1,25 @@
+{
+    "x": 337,
+    "y": 238,
+    "description": "Go back to street",
+    "actions": {
+        "exit": {
+            "poke": [
+                {
+                    "action": "setHoverText",
+                    "text": ""
+                },
+                {
+                    "action": "travel",
+                    "location": "street"
+                }    
+            ]
+        }
+    },
+    "current-state": "exit",
+    "states": {
+        "exit": {
+            "image": "store-exit"
+        }
+    }
+}

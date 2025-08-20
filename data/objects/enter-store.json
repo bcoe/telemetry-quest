@@ -1,0 +1,25 @@
+{
+    "x": 422,
+    "y": 395,
+    "description": "Visit convenience store",
+    "actions": {
+        "enter": {
+            "poke": [
+                {
+                    "action": "setHoverText",
+                    "text": ""
+                },
+                {
+                    "action": "travel",
+                    "location": "store"
+                }    
+            ]
+        }
+    },
+    "current-state": "enter",
+    "states": {
+        "enter": {
+            "image": "store-door"
+        }
+    }
+}

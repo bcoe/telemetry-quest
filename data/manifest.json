@@ -20,7 +20,22 @@
             "sprites/hallway-right",
             "sprites/hallway-left",
             "devops",
-            "cafeteria"
+            "cafeteria",
+            "printer",
+            "server",
+            "sprites/entrance-door",
+            "sprites/entrance-closet-door",
+            "sprites/entrance-scooter",
+            "sprites/entrance-sweater",
+            "street",
+            "sprites/office-door",
+            "sprites/store-door",
+            "store",
+            "sprites/store-exit",
+            "storage",
+            "sprites/exit-storage",
+            "sprites/hallway-storage",
+            "click-anywhere"
         ],
         "videos": [
             "animations/pm",
@@ -35,6 +50,9 @@
             "mood-setting",
             "theme",
             "success",
-            "walking"
+            "walking",
+            "dialog/sick-ride",
+            "dialog/exit-during-all-hands",
+            "dialog/getting-started"
         ]
 }

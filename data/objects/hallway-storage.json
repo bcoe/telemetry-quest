@@ -1,0 +1,25 @@
+{
+    "x": 170,
+    "y": 345,
+    "description": "Walk to storage closet",
+    "actions": {
+        "enter": {
+            "poke": [
+                {
+                    "action": "setHoverText",
+                    "text": ""
+                },
+                {
+                    "action": "travel",
+                    "location": "storage"
+                }    
+            ]
+        }
+    },
+    "current-state": "enter",
+    "states": {
+        "enter": {
+            "image": "hallway-storage"
+        }
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "x": 685,
+    "y": 264,
+    "description": "Examine closet door",
+    "actions": {
+        "closed": {
+            "poke": []
+        }
+    },
+    "current-state": "closed",
+    "states": {
+        "closed": {
+            "image": "entrance-closet-door"
+        }
+    }
+}

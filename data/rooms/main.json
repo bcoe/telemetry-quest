@@ -3,5 +3,6 @@
         "exit-main"
     ],
     "background": "main-screen",
-    "music": ["theme"]
+    "music": ["theme"],
+    "firstLoad": true
 }

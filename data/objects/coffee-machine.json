@@ -1,6 +1,6 @@
 {
-    "x": 540,
-    "y": 339,
+    "x": 538,
+    "y": 335,
     "description": "Use coffee machine",
     "actions": {
         "no-cup": {

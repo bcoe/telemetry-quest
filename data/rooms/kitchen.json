@@ -3,7 +3,7 @@
         "coffee-machine",
         "cupboard",
         "left-exit-kitchen",
-        "right-exit-kitchen",
+        "bottom-exit-kitchen",
         "sink"
     ],
     "background": "kitchen"

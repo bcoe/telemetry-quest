@@ -1,0 +1,36 @@
+{
+    "x": 165,
+    "y": 280,
+    "description": "Leave office",
+    "actions": {
+        "exit": {
+            "poke": [
+                {
+                    "action": "setHoverText",
+                    "text": ""
+                },
+                {
+                    "action": "travel",
+                    "location": "street"
+                }    
+            ]
+        },
+        "all-hands": {
+            "poke": [
+                {
+                    "action": "playSound",
+                    "sound": "dialog/exit-during-all-hands"
+                }   
+            ]
+        }
+    },
+    "current-state": "exit",
+    "states": {
+        "exit": {
+            "image": "entrance-door"
+        },
+        "all-hands": {
+            "image": "entrance-door"
+        }
+    }
+}

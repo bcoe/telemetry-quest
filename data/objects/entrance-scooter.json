@@ -1,0 +1,19 @@
+{
+    "x": 335,
+    "y": 406,
+    "description": "Examine scooter",
+    "actions": {
+        "parked": {
+            "poke": [{
+                    "action": "playSound",
+                    "sound": "dialog/sick-ride"
+             }]
+        }
+    },
+    "current-state": "parked",
+    "states": {
+        "parked": {
+            "image": "entrance-scooter"
+        }
+    }
+}

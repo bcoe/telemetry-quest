@@ -1,6 +1,10 @@
 
 ## Plot
 
+## Characters
+
+* Mark: a very senior backend engineer.
+
 ## Opening
 
 You pushed out what might be the most important update the website has

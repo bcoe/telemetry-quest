@@ -1,6 +1,12 @@
 {
     "objects": [
-        "right-exit-entrance"
+        "right-exit-entrance",
+        "entrance-door",
+        "entrance-closet-door",
+        "entrance-scooter",
+        "entrance-sweater"
     ],
-    "background": "entrance"
+    "background": "entrance",
+    "music": ["dialog/getting-started"],
+    "firstLoad": true
 }

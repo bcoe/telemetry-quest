@@ -1,0 +1,25 @@
+{
+    "x": 588,
+    "y": 292,
+    "description": "Walk to hallway",
+    "actions": {
+        "exit": {
+            "poke": [
+                {
+                    "action": "setHoverText",
+                    "text": ""
+                },
+                {
+                    "action": "travel",
+                    "location": "hallway"
+                }    
+            ]
+        }
+    },
+    "current-state": "exit",
+    "states": {
+        "exit": {
+            "image": "exit-storage"
+        }
+    }
+}

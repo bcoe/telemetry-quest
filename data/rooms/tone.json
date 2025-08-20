@@ -10,5 +10,6 @@
         "y": 250,
         "duration": 100000,
         "scale": 3.0
-    }
+    },
+    "firstLoad": true
 }
