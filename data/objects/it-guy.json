@@ -8,7 +8,7 @@
                 {
                     "action": "dialog",
                     "video": {
-                        "video": "pm",
+                        "video": "it-guy",
                         "duration": 1000
                     },
                     "options": [
@@ -19,7 +19,7 @@
                             },
                             {
                                 "action": "playVideo",
-                                "video": "pm",
+                                "video": "it-guy",
                                 "duration": 12000
                             }        
                         ]},

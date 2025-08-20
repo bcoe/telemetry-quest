@@ -1,6 +1,7 @@
 {
     "objects": [
-        "exit-store"
+        "exit-store",
+        "store-clerk"
     ],
     "background": "store"
 }

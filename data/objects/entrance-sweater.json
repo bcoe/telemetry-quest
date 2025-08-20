@@ -3,13 +3,42 @@
     "y": 250,
     "description": "Use hoodie",
     "actions": {
-        "parked": {
-            "poke": []
+        "stuck": {
+            "poke": [
+                {
+                    "action": "playSound",
+                    "sound": "dialog/can-not-reach-hoodie"
+                }  
+            ]
+        },
+        "unstuck": {
+            "poke": [
+                {
+                    "action": "changeState",
+                    "state": "has-wallet"
+                },
+                {
+                    "action": "addInventory",
+                    "item": "wallet"
+                },
+                {
+                    "action": "playSound",
+                    "sound": "dialog/got-wallet"
+                },
+                {
+                    "action": "setState",
+                    "object": "store-clerk",
+                    "state": "have-wallet"
+                }
+            ]
         }
     },
     "current-state": "stuck",
     "states": {
         "stuck": {
+            "image": "entrance-sweater"
+        },
+        "unstuck": {
             "image": "entrance-sweater"
         }
     }

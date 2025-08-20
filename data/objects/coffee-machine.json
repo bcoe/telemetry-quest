@@ -26,7 +26,26 @@
             "poke": [{
                 "action": "playSound",
                 "sound": "dialog/coffee-filters-missing"
-            }]
+            }],
+            "coffee-filter": [
+                {
+                    "action": "changeState",
+                    "state": "has-coffee"
+                },
+                {
+                    "action": "removeItem",
+                    "item": "coffee-filter"
+                },
+                {
+                    "action": "playSound",
+                    "sound": "dialog/awake"
+                },
+                {
+                    "action": "setState",
+                    "object": "my-computer",
+                    "state": "awake"
+                }
+            ]
         }
     },
     "current-state": "no-cup",

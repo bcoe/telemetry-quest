@@ -1,0 +1,29 @@
+{
+    "x": 330,
+    "y": 224,
+    "description": "Use WD-40",
+    "actions": {
+        "no-wd40": {
+            "poke": [
+                {
+                    "action": "changeState",
+                    "state": "has-wd40"
+                },
+                {
+                    "action": "addInventory",
+                    "item": "wd40"
+                },
+                {
+                    "action": "playSound",
+                    "sound": "dialog/get-wd40"
+                }
+            ]
+        }
+    },
+    "current-state": "no-wd40",
+    "states": {
+        "no-wd40": {
+            "image": "wd40-shelf"
+        }
+    }
+}

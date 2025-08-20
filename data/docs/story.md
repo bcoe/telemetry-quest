@@ -17,6 +17,16 @@ Unfortunately, your legacy website lacks any telemetry. You don't have a clue wh
 
 If you can't get this fixed by the end of the day, it might be the last feature you ever ship.
 
+## Ending
+
+Deploying the error tracking to your application is much easier than you expected.
+
+Within minutes, you're able to see what errors were affecting your customers.
+
+You're able to patch the problems, deploy a fix, and no rollback is necessary.
+
+You've saved the day.
+
 ----
 
 * Deployed the feature of the year, to meet shareholder value.

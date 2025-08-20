@@ -7,9 +7,23 @@
             "poke": [
                 {
                     "action": "dialog",
+                     "video": {
+                        "video": "sink",
+                        "duration": 1000
+                    },
                     "options": [
-                        {"text": "Wash your feet in sink.", "actions": []},
-                        {"text": "Spit in sink.", "actions": []},
+                        {"text": "Wash your feet in sink.", "actions": [
+                            {
+                                "action": "playSound",
+                                "sound": "dialog/wash-feet"
+                            }
+                        ]},
+                        {"text": "Spit in sink.", "actions": [
+                            {
+                                "action": "playSound",
+                                "sound": "dialog/spit-in-sink"
+                            }
+                        ]},
                         {"text": "Do nothing.", "actions": [
                             {
                                 "action": "dismiss"

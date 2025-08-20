@@ -44,12 +44,23 @@
             "sprites/it-guy",
             "sprites/router",
             "sprites/cafeteria-large-drawer",
-            "sprites/cafeteria-small-drawer"
+            "sprites/cafeteria-small-drawer",
+            "sprites/wd40-shelf",
+            "inventory/wd40",
+            "inventory/wallet",
+            "inventory/coffee-filter",
+            "sprites/store-clerk",
+            "winner",
+            "sprites/all-hands-off",
+            "sprites/all-hands-on",
+            "sprites/dirty-dishes"
         ],
         "videos": [
             "animations/pm",
             "animations/opening",
-            "animations/computer"
+            "animations/computer",
+            "animations/sink",
+            "animations/it-guy"
         ],
          "sounds": [
             "dialog/new-ai-feature",
@@ -78,6 +89,22 @@
             "dialog/router-currently-resetting",
             "dialog/no-server-room",
             "dialog/printer-jam-hint",
-            "dialog/busy-it-guy"
+            "dialog/busy-it-guy",
+            "dialog/stuck-hinges",
+            "dialog/can-not-reach-hoodie",
+            "dialog/get-wd40",
+            "dialog/hinges-fixed",
+            "dialog/got-wallet",
+            "dialog/yes-we-have-coffee-filters",
+            "dialog/clerk-hello",
+            "dialog/no-wallet",
+            "dialog/enjoy-filters",
+            "dialog/awake",
+            "dialog/ai-features",
+            "dialog/tv-off",
+            "dialog/winner",
+            "dialog/wash-feet",
+            "dialog/spit-in-sink",
+            "dialog/not-my-lucky-mug"
         ]
 }

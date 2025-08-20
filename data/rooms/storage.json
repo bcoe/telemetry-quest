@@ -1,6 +1,7 @@
 {
     "objects": [
-        "exit-storage"
+        "exit-storage",
+        "storage-wd40"
     ],
     "background": "storage"
 }

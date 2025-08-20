@@ -50,3 +50,15 @@ body {
 #screen.cursor-chopsticks canvas {
   cursor: url('data/inventory/chopsticks.png'), auto;
 }
+
+#screen.cursor-wd40 canvas {
+  cursor: url('data/inventory/wd40.png'), auto;
+}
+
+#screen.cursor-wallet canvas {
+  cursor: url('data/inventory/wallet.png'), auto;
+}
+
+#screen.cursor-coffee-filter canvas {
+  cursor: url('data/inventory/coffee-filter.png'), auto;
+}

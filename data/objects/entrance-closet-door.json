@@ -3,13 +3,41 @@
     "y": 264,
     "description": "Examine closet door",
     "actions": {
-        "closed": {
-            "poke": []
+        "stuck": {
+            "poke": [
+                {
+                    "action": "playSound",
+                    "sound": "dialog/stuck-hinges"
+                }  
+            ],
+            "wd40": [
+                {
+                    "action": "playSound",
+                    "sound": "dialog/hinges-fixed"
+                },
+                {
+                    "action": "changeState",
+                    "state": "unstuck"
+                },
+                {
+                    "action": "removeItem",
+                    "item": "wd40"
+                },
+                {
+                    "action": "playSound",
+                    "sound": "success"
+                },
+                {
+                    "action": "setState",
+                    "object": "entrance-sweater",
+                    "state": "unstuck"
+                }
+            ]
         }
     },
-    "current-state": "closed",
+    "current-state": "stuck",
     "states": {
-        "closed": {
+        "stuck": {
             "image": "entrance-closet-door"
         }
     }

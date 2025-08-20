@@ -1,0 +1,131 @@
+{
+    "x": 515,
+    "y": 245,
+    "description": "Talk to store clerk",
+    "actions": {
+        "ask-for-filters-no-wallet": {
+            "poke": [
+                {
+                    "action": "dialog",
+                    "video": {
+                        "video": "pm",
+                        "duration": 1000
+                    },
+                    "options": [
+                        {"text": "Hey, I'm looking for some coffee filters.", "actions": [
+                            {
+                                "action": "playSound",
+                                "sound": "dialog/yes-we-have-coffee-filters"
+                            },
+                            {
+                                "action": "playVideo",
+                                "video": "pm",
+                                "duration": 12000
+                            }
+                        ]},
+                        {"text": "Buy coffee filters.", "actions": [
+                            {
+                                "action": "playSound",
+                                "sound": "dialog/no-wallet"
+                            }
+                        ]},
+                        {"text": "Okay, bye.", "actions": [
+                            {
+                                "action": "dismiss"
+                            }
+                        ]}
+                    ]
+                },
+                {
+                    "action": "playSound",
+                    "sound": "dialog/clerk-hello"
+                }
+            ]
+        },
+         "have-wallet": {
+            "poke": [
+                {
+                    "action": "dialog",
+                    "video": {
+                        "video": "pm",
+                        "duration": 1000
+                    },
+                    "options": [
+                        {"text": "Hey, I'm looking for some coffee filters.", "actions": [
+                            {
+                                "action": "playSound",
+                                "sound": "dialog/yes-we-have-coffee-filters"
+                            },
+                            {
+                                "action": "playVideo",
+                                "video": "pm",
+                                "duration": 12000
+                            }
+                        ]},
+                        {"text": "Buy coffee filters.", "actions": [
+                            {
+                                "action": "playSound",
+                                "sound": "dialog/enjoy-filters"
+                            },
+                            {
+                                "action": "setState",
+                                "object": "store-clerk",
+                                "state": "filters-bought"
+                            },
+                            {
+                                "action": "addInventory",
+                                "item": "coffee-filter"
+                            },
+                            {
+                                "action": "dismiss"
+                            }
+                        ]},
+                        {"text": "Okay, bye.", "actions": [
+                            {
+                                "action": "dismiss"
+                            }
+                        ]}
+                    ]
+                },
+                {
+                    "action": "playSound",
+                    "sound": "dialog/clerk-hello"
+                }
+            ]
+        },
+        "filters-bought": {
+            "poke": [
+                {
+                    "action": "dialog",
+                    "video": {
+                        "video": "pm",
+                        "duration": 1000
+                    },
+                    "options": [
+                        {"text": "Okay, bye.", "actions": [
+                            {
+                                "action": "dismiss"
+                            }
+                        ]}
+                    ]
+                },
+                {
+                    "action": "playSound",
+                    "sound": "dialog/clerk-hello"
+                }
+            ]
+        }
+    },
+    "current-state": "ask-for-filters-no-wallet",
+    "states": {
+        "ask-for-filters-no-wallet": {
+            "image": "store-clerk"
+        },
+        "have-wallet": {
+            "image": "store-clerk"
+        },
+        "filter-bought": {
+            "image": "store-clerk"
+        }
+    }
+}

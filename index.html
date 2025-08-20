@@ -24,6 +24,7 @@
       // Store.
       import store from './data/rooms/store.json' with { type: "json" };
       import exitStore from './data/objects/exit-store.json' with { type: "json" };
+      import storeClerk from './data/objects/store-clerk.json' with { type: "json" };
 
       // Entrance
       import entrance from './data/rooms/entrance.json' with { type: "json" };
@@ -38,6 +39,7 @@
       import leftExitLounge from './data/objects/left-exit-lounge.json' with { type: "json" };
       import rightExitLounge from './data/objects/right-exit-lounge.json' with { type: "json" };
       import constructionPaper from './data/objects/construction-paper.json' with { type: "json" };
+      import allHandsScreen from './data/objects/all-hands-screen.json' with { type: "json" };
 
       // Frontend Pod
       import frontend from './data/rooms/frontend.json' with { type: "json" };
@@ -56,6 +58,7 @@
       // Storage
       import storage from './data/rooms/storage.json' with { type: "json" };
       import exitStorage from './data/objects/exit-storage.json' with { type: "json" };
+      import storageWd40 from './data/objects/storage-wd40.json' with { type: "json" };
 
       // Printer
       import printer from './data/rooms/printer.json' with { type: "json" };
@@ -68,6 +71,7 @@
       import leftExitKitchen from './data/objects/left-exit-kitchen.json' with { type: "json" };
       import bottomExitKitchen from './data/objects/bottom-exit-kitchen.json' with { type: "json" };
       import sink from './data/objects/sink.json' with { type: "json" };
+      import dirtyDishes from './data/objects/dirty-dishes.json' with { type: "json" };
 
       // Cafeteria
       import cafeteria from './data/rooms/cafeteria.json' with { type: "json" };
@@ -93,6 +97,7 @@
       import click from './data/rooms/click.json' with { type: "json" };
       import main from './data/rooms/main.json' with { type: "json" };
       import tone from './data/rooms/tone.json' with { type: "json" };
+      import winner from './data/rooms/winner.json' with { type: "json" };
 
       const canvas = document.getElementById(('screen'));
 
@@ -151,7 +156,11 @@
         'it-guy': itGuy,
         router,
         'cafeteria-large-drawer': cafeteriaLargeDrawer,
-        'cafeteria-small-drawer': cafeteriaSmallDrawer
+        'cafeteria-small-drawer': cafeteriaSmallDrawer,
+        'storage-wd40': storageWd40,
+        'store-clerk': storeClerk,
+        'all-hands-screen': allHandsScreen,
+        'dirty-dishes': dirtyDishes
       };
       const rooms = {
         lounge,
@@ -168,7 +177,8 @@
         street,
         store,
         storage,
-        click
+        click,
+        winner
       };
       class VideoPlayer {
         startVideo(video, x, y, scaleX, scaleY, duration, closeOnFinish = false) {
@@ -182,7 +192,6 @@
           me.game.world.addChild(this.videoSprite);
           this.videoSprite.play();
           clearTimeout(this.timer);
-          console.log(duration);
           this.timer = setTimeout(() => {
             if (this.videoSprite) this.videoSprite.pause();
             if (closeOnFinish) this.stopVideo();
@@ -232,8 +241,19 @@
               videoPlayer.videoSprite.pause();
             }, video.duration)
           }
+          addInventory(action) {
+            inventory.addItem(action.item);
+          }
+          async travel(action) {
+            me.audio.stop();
+            me.audio.play('walking');
+            setCursor('poke');
+            const map = new Map(rooms[action.location]);
+            map.load();
+          }
           onClick() {
             for (const action of this.selectionAction.actions) {
+              console.info(action);
               this[action.action](action);
             }
           }
@@ -260,6 +280,8 @@
           me.game.world.addChild(this.hoverText);
         }
         setDialogOptions(options, videoSettings) {
+          this.options = options;
+          this.videoSettings = videoSettings;
           if (!this.dialogSelection[0]) {
             for (let i = 0; i < 3; i++) {
               const selection = new DialogSelection(this.selectionX, this.selectionY + (i * 45), this.scaleX, this.scaleY, undefined);
@@ -346,13 +368,11 @@
           if (itemIndex !== -1) {
             inventoryItems.splice(itemIndex, 1);
             for (const itemSprite of this.items) {
-              me.game.world.removeChild(itemSprite);
+              if (itemSprite.item === item) {
+                me.game.world.removeChild(itemSprite);
+              }
               draggingItem = false;
               setCursor('poke');
-            }
-            this.items = [];
-            for (const item of inventoryItems) {
-              this.addItem(item);
             }
           }
         }
@@ -409,6 +429,7 @@
           inventory.addItem(action.item);
         }
         playSound(sound) {
+          me.audio.stop();
           me.audio.play(sound.sound);
         }
         playVideo(video) {

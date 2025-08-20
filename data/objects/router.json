@@ -31,6 +31,11 @@
                     "action": "setState",
                     "object": "entrance-door",
                     "state": "exit"
+                },
+                {
+                    "action": "setState",
+                    "object": "all-hands-screen",
+                    "state": "off"
                 }
             ]
         },

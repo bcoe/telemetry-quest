@@ -72,6 +72,33 @@
                     "sound": "dialog/keyboard"
                 }
             ]   
+        },
+        "awake": {
+            "poke": [
+                {
+                    "action": "dialog",
+                    "video": {
+                        "video": "computer"
+                    },
+                    "options": [
+                        {"text": "Add sentry error tracking to application.", "actions": [
+                            {
+                                "action": "travel",
+                                "location": "winner"
+                            }    
+                        ]},
+                        {"text": "Do nothing.", "actions": [
+                            {
+                                "action": "dismiss"
+                            }
+                        ]}
+                    ]
+                },
+                {
+                    "action": "playSound",
+                    "sound": "dialog/keyboard"
+                }
+            ]
         }
     },
     "current-state": "start",
@@ -80,6 +107,9 @@
             "image": "my-computer"
         },
         "paper-in-printer": {
+            "image": "my-computer"
+        },
+        "awake": {
             "image": "my-computer"
         }
     }

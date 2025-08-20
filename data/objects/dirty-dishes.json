@@ -1,0 +1,19 @@
+{
+    "x": 455,
+    "y": 361,
+    "description": "Examine dirty dishes",
+    "actions": {
+        "dirty": {
+            "poke": [{
+                    "action": "playSound",
+                    "sound": "dialog/not-my-lucky-mug"
+             }]
+        }
+    },
+    "current-state": "dirty",
+    "states": {
+        "dirty": {
+            "image": "dirty-dishes"
+        }
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "objects": [],
+    "background": "winner",
+    "music": ["dialog/winner", "theme"],
+    "firstLoad": true
+}

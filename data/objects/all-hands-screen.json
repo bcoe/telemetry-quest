@@ -1,0 +1,28 @@
+{
+    "x": 682,
+    "y": 324,
+    "description": "Examine screen",
+    "actions": {
+        "on": {
+            "poke": [{
+                    "action": "playSound",
+                    "sound": "dialog/ai-features"
+             }]
+        },
+        "off": {
+            "poke": [{
+                    "action": "playSound",
+                    "sound": "dialog/tv-off"
+             }]
+        }
+    },
+    "current-state": "on",
+    "states": {
+        "on": {
+            "image": "all-hands-on"
+        },
+        "off": {
+            "image": "all-hands-off"
+        }
+    }
+}

@@ -2,7 +2,8 @@
     "objects": [
         "left-exit-lounge",
         "right-exit-lounge",
-        "construction-paper"
+        "construction-paper",
+        "all-hands-screen"
     ],
     "background": "desks"
 }
