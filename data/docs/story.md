@@ -100,4 +100,22 @@ Main Entrance -> Lounge Area -> Frontend Pod -> Hallway---- Kitchen ---- Lunch A
 * Meeting Room 1.
 * Meeting Room 2.
 * Meeting Room 3.
-* 
+
+
+## Script
+
+In the early 1990s, Sierra adventure games helped me fall in love with computers.
+
+They were funy, challenging, and very sarcastic. Although the graphics seem archaic by today's standards, 
+they were very emersive for an 8 year old.
+
+For Hack week, I wanted to see how far I could get building a Sierra inspired adventure game in just
+my cunning, a bunch LLM models, and a severe lack of sleep.
+
+From this was born, "Telemetry Quest".
+
+
+Telemetry Quest is a retro adventure game, exploring software instrumentation, and all the excitement this
+space has to offer.
+
+It has thrills, drama, action, and most importantly, software telemetry.
