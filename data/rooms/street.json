@@ -1,7 +1,8 @@
 {
     "objects": [
         "office-door",
-        "enter-store"
+        "enter-store",
+        "cycle-door"
     ],
     "background": "street"
 }

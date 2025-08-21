@@ -9,6 +9,13 @@
       <div id="screen" class="cursor-poke" />
     </div>
     <script type="module">
+      // Load Sprite Sheet:
+      import spritesheet from './data/spritesheet.json' with { type: "json" };
+      const REGION_LOOKUP = {};
+      for (const sprite of spritesheet.frames) {
+        REGION_LOOKUP[sprite.filename.split('.')[0]] = sprite.filename;
+      }
+
       // Load all resources at the outset:
       import manifest from './data/manifest.json' with { type: "json" };;
     
@@ -20,6 +27,7 @@
       import street from './data/rooms/street.json' with { type: "json" };
       import officeDoor from './data/objects/office-door.json' with { type: "json" };
       import enterStore from './data/objects/enter-store.json' with { type: "json" };
+      import cycleDoor from './data/objects/cycle-door.json' with { type: "json" };
 
       // Store.
       import store from './data/rooms/store.json' with { type: "json" };
@@ -84,6 +92,7 @@
       import leftExitDevops from './data/objects/left-exit-devops.json' with { type: "json" };
       import rightExitDevops from './data/objects/right-exit-devops.json' with { type: "json" };
       import itGuy from './data/objects/it-guy.json' with { type: "json" };
+      import mark from './data/objects/mark.json' with { type: "json" };
 
       // Server
       import server from './data/rooms/server.json' with { type: "json" };
@@ -98,6 +107,8 @@
       import main from './data/rooms/main.json' with { type: "json" };
       import tone from './data/rooms/tone.json' with { type: "json" };
       import winner from './data/rooms/winner.json' with { type: "json" };
+      import loser1 from './data/rooms/loser-1.json' with { type: "json" };
+      import loser2 from './data/rooms/loser-2.json' with { type: "json" };
 
       const canvas = document.getElementById(('screen'));
 
@@ -160,7 +171,9 @@
         'storage-wd40': storageWd40,
         'store-clerk': storeClerk,
         'all-hands-screen': allHandsScreen,
-        'dirty-dishes': dirtyDishes
+        'dirty-dishes': dirtyDishes,
+        mark,
+        'cycle-door': cycleDoor
       };
       const rooms = {
         lounge,
@@ -178,7 +191,9 @@
         store,
         storage,
         click,
-        winner
+        winner,
+        'loser-1': loser1,
+        'loser-2': loser2
       };
       class VideoPlayer {
         startVideo(video, x, y, scaleX, scaleY, duration, closeOnFinish = false) {
@@ -318,18 +333,23 @@
 
       class Item extends UISpriteElement {
           constructor(x, y, scaleX, scaleY, item) {
-              super(x, y, {
-                image: item,
-              });
+              const opts = {image: item};
+              if (REGION_LOOKUP[item]) {
+                opts.image = me.game.texture;
+                opts.region = REGION_LOOKUP[item];
+              }
+              super(x, y, opts);
               this.item = item;
           }
           onOver(event) {
             if (!gameConsole.dialogOpen) {
               this.tint.setColor(144, 238, 144);
+              gameConsole.setHoverText(this.item);
             }
           }
           onOut(event) {
             this.tint.setColor(255, 255, 255);
+            gameConsole.setHoverText('');
           }
           onClick(event) {
             if (!gameConsole.dialogOpen) {
@@ -381,9 +401,12 @@
       class Sprite extends UISpriteElement {
         constructor(scaleX, scaleY, data) {
             const image = data.states?.[data['current-state']]?.image
-            super(data.x, data.y, {
-              image: image ? image : 'coffee-cup',
-            });
+            const opts = {image: image ? image : 'coffee-cup',};
+            if (REGION_LOOKUP[image]) {
+              opts.image = me.game.texture;
+              opts.region = REGION_LOOKUP[image];
+            }
+            super(data.x, data.y, opts);
             this.currentTransform.scale(scaleX, scaleY);
             this.actions = data.actions;
             this.data = data;
@@ -415,7 +438,12 @@
         changeState(action) {
           this.data['current-state'] = action.state;
           if (this.data.states[action.state]?.image) {
-            this.image = this.data.states[action.state].image;
+            const image = this.data.states[action.state].image;
+            if (REGION_LOOKUP[image]) {
+              this.setRegion(me.game.texture.getRegion(REGION_LOOKUP[image]));
+            } else {
+              this.image = this.data.states[action.state].image;
+            }
             if (!this.visible) {
               this.visible = true;
               me.game.world.addChild(this);
@@ -574,6 +602,7 @@
           })
         }
         me.loader.preload(resources, () => {
+          me.game.texture = new me.TextureAtlas(spritesheet, me.loader.getImage('spritesheet'));
           const m1 = new Map(rooms.click);
           m1.load();
         });

@@ -1,0 +1,54 @@
+{
+    "x": 210,
+    "y": 354,
+    "description": "Interrupt Mark",
+    "actions": {
+        "one": {
+            "poke": [
+                {
+                    "action": "playSound",
+                    "sound": "dialog/mark-1"
+                },
+                {
+                    "action": "setState",
+                    "object": "mark",
+                    "state": "two"
+                }
+            ]
+        },
+        "two": {
+            "poke": [
+                {
+                    "action": "playSound",
+                    "sound": "dialog/mark-2"
+                },
+                {
+                    "action": "setState",
+                    "object": "mark",
+                    "state": "three"
+                }
+            ]
+        },
+        "three": {
+            "poke": [
+                {
+                    "action": "playSound",
+                    "sound": "dialog/mark-2"
+                },
+                {
+                    "action": "travel",
+                    "location": "loser-1"
+                }    
+            ]
+        }
+    },
+    "current-state": "one",
+    "states": {
+        "one": {
+            "image": "mark"
+        },
+        "two": {
+            "image": "mark"
+        }
+    }
+}

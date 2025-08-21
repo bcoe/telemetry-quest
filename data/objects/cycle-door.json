@@ -1,0 +1,19 @@
+{
+    "x": 685,
+    "y": 389,
+    "description": "Enter 'Mind and Body Cycle'",
+    "actions": {
+        "parked": {
+            "poke": [{
+                    "action": "playSound",
+                    "sound": "dialog/high-intensity"
+             }]
+        }
+    },
+    "current-state": "parked",
+    "states": {
+        "parked": {
+            "image": "cycle-door"
+        }
+    }
+}

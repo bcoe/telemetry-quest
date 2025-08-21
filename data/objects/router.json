@@ -10,6 +10,12 @@
                     "sound": "dialog/reset-button"
                 }
             ],
+            "fork": [
+                {
+                    "action": "travel",
+                    "location": "loser-2"
+                }    
+            ],
             "chopsticks": [
                 {
                     "action": "playSound",

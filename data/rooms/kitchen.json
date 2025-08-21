@@ -4,7 +4,8 @@
         "cupboard",
         "left-exit-kitchen",
         "bottom-exit-kitchen",
-        "dirty-dishes"
+        "dirty-dishes",
+        "sink"
     ],
     "background": "kitchen"
 }

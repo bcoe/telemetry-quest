@@ -1,0 +1,876 @@
+{
+	"frames": [
+		{
+			"filename": "all-hands-off.png",
+			"frame": {
+				"x": 1,
+				"y": 1,
+				"w": 254,
+				"h": 209
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 254,
+				"h": 209
+			},
+			"sourceSize": {
+				"w": 254,
+				"h": 209
+			}
+		},
+		{
+			"filename": "all-hands-on.png",
+			"frame": {
+				"x": 257,
+				"y": 1,
+				"w": 254,
+				"h": 209
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 254,
+				"h": 209
+			},
+			"sourceSize": {
+				"w": 254,
+				"h": 209
+			}
+		},
+		{
+			"filename": "cafeteria-large-drawer.png",
+			"frame": {
+				"x": 513,
+				"y": 1,
+				"w": 125,
+				"h": 74
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 125,
+				"h": 74
+			},
+			"sourceSize": {
+				"w": 125,
+				"h": 74
+			}
+		},
+		{
+			"filename": "cafeteria-small-drawer.png",
+			"frame": {
+				"x": 640,
+				"y": 1,
+				"w": 75,
+				"h": 42
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 75,
+				"h": 42
+			},
+			"sourceSize": {
+				"w": 75,
+				"h": 42
+			}
+		},
+		{
+			"filename": "chopsticks.png",
+			"frame": {
+				"x": 717,
+				"y": 1,
+				"w": 64,
+				"h": 64
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 64,
+				"h": 64
+			},
+			"sourceSize": {
+				"w": 64,
+				"h": 64
+			}
+		},
+		{
+			"filename": "coffee-cup.png",
+			"frame": {
+				"x": 783,
+				"y": 1,
+				"w": 64,
+				"h": 64
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 64,
+				"h": 64
+			},
+			"sourceSize": {
+				"w": 64,
+				"h": 64
+			}
+		},
+		{
+			"filename": "coffee-filter.png",
+			"frame": {
+				"x": 849,
+				"y": 1,
+				"w": 64,
+				"h": 64
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 64,
+				"h": 64
+			},
+			"sourceSize": {
+				"w": 64,
+				"h": 64
+			}
+		},
+		{
+			"filename": "coffee-machine-no-cup.png",
+			"frame": {
+				"x": 915,
+				"y": 1,
+				"w": 149,
+				"h": 176
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 149,
+				"h": 176
+			},
+			"sourceSize": {
+				"w": 149,
+				"h": 176
+			}
+		},
+		{
+			"filename": "coffee-machine-with-cup.png",
+			"frame": {
+				"x": 1066,
+				"y": 1,
+				"w": 149,
+				"h": 176
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 149,
+				"h": 176
+			},
+			"sourceSize": {
+				"w": 149,
+				"h": 176
+			}
+		},
+		{
+			"filename": "construction-paper.png",
+			"frame": {
+				"x": 1217,
+				"y": 1,
+				"w": 64,
+				"h": 64
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 64,
+				"h": 64
+			},
+			"sourceSize": {
+				"w": 64,
+				"h": 64
+			}
+		},
+		{
+			"filename": "cupboard-door.png",
+			"frame": {
+				"x": 1283,
+				"y": 1,
+				"w": 167,
+				"h": 126
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 167,
+				"h": 126
+			},
+			"sourceSize": {
+				"w": 167,
+				"h": 126
+			}
+		},
+		{
+			"filename": "cycle-door.png",
+			"frame": {
+				"x": 513,
+				"y": 129,
+				"w": 107,
+				"h": 225
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 107,
+				"h": 225
+			},
+			"sourceSize": {
+				"w": 107,
+				"h": 225
+			}
+		},
+		{
+			"filename": "dirty-dishes.png",
+			"frame": {
+				"x": 622,
+				"y": 129,
+				"w": 135,
+				"h": 108
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 135,
+				"h": 108
+			},
+			"sourceSize": {
+				"w": 135,
+				"h": 108
+			}
+		},
+		{
+			"filename": "entrance-closet-door.png",
+			"frame": {
+				"x": 1217,
+				"y": 129,
+				"w": 324,
+				"h": 699
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 324,
+				"h": 699
+			},
+			"sourceSize": {
+				"w": 324,
+				"h": 699
+			}
+		},
+		{
+			"filename": "entrance-door.png",
+			"frame": {
+				"x": 1,
+				"y": 830,
+				"w": 138,
+				"h": 681
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 138,
+				"h": 681
+			},
+			"sourceSize": {
+				"w": 138,
+				"h": 681
+			}
+		},
+		{
+			"filename": "entrance-scooter.png",
+			"frame": {
+				"x": 759,
+				"y": 179,
+				"w": 393,
+				"h": 417
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 393,
+				"h": 417
+			},
+			"sourceSize": {
+				"w": 393,
+				"h": 417
+			}
+		},
+		{
+			"filename": "entrance-sweater.png",
+			"frame": {
+				"x": 141,
+				"y": 830,
+				"w": 111,
+				"h": 216
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 111,
+				"h": 216
+			},
+			"sourceSize": {
+				"w": 111,
+				"h": 216
+			}
+		},
+		{
+			"filename": "exit-storage.png",
+			"frame": {
+				"x": 254,
+				"y": 598,
+				"w": 417,
+				"h": 819
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 417,
+				"h": 819
+			},
+			"sourceSize": {
+				"w": 417,
+				"h": 819
+			}
+		},
+		{
+			"filename": "fork.png",
+			"frame": {
+				"x": 1452,
+				"y": 1,
+				"w": 64,
+				"h": 64
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 64,
+				"h": 64
+			},
+			"sourceSize": {
+				"w": 64,
+				"h": 64
+			}
+		},
+		{
+			"filename": "hallway-left.png",
+			"frame": {
+				"x": 673,
+				"y": 830,
+				"w": 69,
+				"h": 341
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 69,
+				"h": 341
+			},
+			"sourceSize": {
+				"w": 69,
+				"h": 341
+			}
+		},
+		{
+			"filename": "hallway-right.png",
+			"frame": {
+				"x": 744,
+				"y": 830,
+				"w": 78,
+				"h": 373
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 78,
+				"h": 373
+			},
+			"sourceSize": {
+				"w": 78,
+				"h": 373
+			}
+		},
+		{
+			"filename": "hallway-storage.png",
+			"frame": {
+				"x": 824,
+				"y": 830,
+				"w": 174,
+				"h": 585
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 174,
+				"h": 585
+			},
+			"sourceSize": {
+				"w": 174,
+				"h": 585
+			}
+		},
+		{
+			"filename": "inventory-background.png",
+			"frame": {
+				"x": 1543,
+				"y": 1,
+				"w": 596,
+				"h": 302
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 596,
+				"h": 302
+			},
+			"sourceSize": {
+				"w": 596,
+				"h": 302
+			}
+		},
+		{
+			"filename": "it-guy.png",
+			"frame": {
+				"x": 1,
+				"y": 305,
+				"w": 155,
+				"h": 266
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 155,
+				"h": 266
+			},
+			"sourceSize": {
+				"w": 155,
+				"h": 266
+			}
+		},
+		{
+			"filename": "kitchen-door.png",
+			"frame": {
+				"x": 158,
+				"y": 305,
+				"w": 110,
+				"h": 200
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 110,
+				"h": 200
+			},
+			"sourceSize": {
+				"w": 110,
+				"h": 200
+			}
+		},
+		{
+			"filename": "left-right-exit.png",
+			"frame": {
+				"x": 1543,
+				"y": 305,
+				"w": 99,
+				"h": 878
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 99,
+				"h": 878
+			},
+			"sourceSize": {
+				"w": 99,
+				"h": 878
+			}
+		},
+		{
+			"filename": "load-paper.png",
+			"frame": {
+				"x": 1644,
+				"y": 305,
+				"w": 276,
+				"h": 147
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 276,
+				"h": 147
+			},
+			"sourceSize": {
+				"w": 276,
+				"h": 147
+			}
+		},
+		{
+			"filename": "my-computer.png",
+			"frame": {
+				"x": 270,
+				"y": 305,
+				"w": 148,
+				"h": 115
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 148,
+				"h": 115
+			},
+			"sourceSize": {
+				"w": 148,
+				"h": 115
+			}
+		},
+		{
+			"filename": "office-door.png",
+			"frame": {
+				"x": 1922,
+				"y": 305,
+				"w": 137,
+				"h": 148
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 137,
+				"h": 148
+			},
+			"sourceSize": {
+				"w": 137,
+				"h": 148
+			}
+		},
+		{
+			"filename": "plant.png",
+			"frame": {
+				"x": 622,
+				"y": 305,
+				"w": 109,
+				"h": 271
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 109,
+				"h": 271
+			},
+			"sourceSize": {
+				"w": 109,
+				"h": 271
+			}
+		},
+		{
+			"filename": "router.png",
+			"frame": {
+				"x": 1644,
+				"y": 455,
+				"w": 279,
+				"h": 267
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 279,
+				"h": 267
+			},
+			"sourceSize": {
+				"w": 279,
+				"h": 267
+			}
+		},
+		{
+			"filename": "sink.png",
+			"frame": {
+				"x": 270,
+				"y": 455,
+				"w": 220,
+				"h": 98
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 220,
+				"h": 98
+			},
+			"sourceSize": {
+				"w": 220,
+				"h": 98
+			}
+		},
+		{
+			"filename": "software-guy-1.png",
+			"frame": {
+				"x": 1925,
+				"y": 455,
+				"w": 152,
+				"h": 270
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 152,
+				"h": 270
+			},
+			"sourceSize": {
+				"w": 152,
+				"h": 270
+			}
+		},
+		{
+			"filename": "store-clerk.png",
+			"frame": {
+				"x": 1644,
+				"y": 724,
+				"w": 276,
+				"h": 369
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 276,
+				"h": 369
+			},
+			"sourceSize": {
+				"w": 276,
+				"h": 369
+			}
+		},
+		{
+			"filename": "store-door.png",
+			"frame": {
+				"x": 1000,
+				"y": 727,
+				"w": 96,
+				"h": 189
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 96,
+				"h": 189
+			},
+			"sourceSize": {
+				"w": 96,
+				"h": 189
+			}
+		},
+		{
+			"filename": "store-exit.png",
+			"frame": {
+				"x": 1922,
+				"y": 727,
+				"w": 195,
+				"h": 396
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 195,
+				"h": 396
+			},
+			"sourceSize": {
+				"w": 195,
+				"h": 396
+			}
+		},
+		{
+			"filename": "television.png",
+			"frame": {
+				"x": 1000,
+				"y": 1125,
+				"w": 460,
+				"h": 334
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 460,
+				"h": 334
+			},
+			"sourceSize": {
+				"w": 460,
+				"h": 334
+			}
+		},
+		{
+			"filename": "up-down-exit.png",
+			"frame": {
+				"x": 141,
+				"y": 1461,
+				"w": 1536,
+				"h": 109
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1536,
+				"h": 109
+			},
+			"sourceSize": {
+				"w": 1536,
+				"h": 109
+			}
+		},
+		{
+			"filename": "wallet.png",
+			"frame": {
+				"x": 420,
+				"y": 305,
+				"w": 64,
+				"h": 64
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 64,
+				"h": 64
+			},
+			"sourceSize": {
+				"w": 64,
+				"h": 64
+			}
+		},
+		{
+			"filename": "wd40.png",
+			"frame": {
+				"x": 2061,
+				"y": 305,
+				"w": 64,
+				"h": 64
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 64,
+				"h": 64
+			},
+			"sourceSize": {
+				"w": 64,
+				"h": 64
+			}
+		},
+		{
+			"filename": "wd40-shelf.png",
+			"frame": {
+				"x": 1644,
+				"y": 1125,
+				"w": 135,
+				"h": 207
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 135,
+				"h": 207
+			},
+			"sourceSize": {
+				"w": 135,
+				"h": 207
+			}
+		}
+	],
+	"meta": {
+		"app": "http://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"image": "spritesheet.png",
+		"format": "RGBA8888",
+		"size": {
+			"w": 2140,
+			"h": 1571
+		},
+		"scale": "1"
+	}
+}

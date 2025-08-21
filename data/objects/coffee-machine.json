@@ -44,6 +44,11 @@
                     "action": "setState",
                     "object": "my-computer",
                     "state": "awake"
+                },
+                {
+                    "action": "setState",
+                    "object": "coffee-machine",
+                    "state": "finished"
                 }
             ]
         }
