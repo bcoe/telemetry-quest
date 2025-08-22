@@ -1,7 +1,7 @@
 {
     "objects": [],
     "background": "loser-2",
-    "music": ["dialog/loser-2"],
+    "music": ["dialog/loser-2", "dialog/electricity"],
     "firstLoad": true,
     "inventory": false
 }

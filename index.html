@@ -2,8 +2,9 @@
 <html>
   <head>
     <title>Telemetry Quest</title>
-    <link rel="stylesheet" type="text/css" media="screen" href="index.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="index.css" />
     <script src="https://js.sentry-cdn.com/a83d5560e2e19be744f563b4b42ff5f6.min.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
   </head>
   <body bgcolor="white">
     <div style="height: 600px; margin-top: 50px;">
@@ -209,6 +210,7 @@
           this.videoSprite.play();
           clearTimeout(this.timer);
           this.timer = setTimeout(() => {
+            if (!this.videoSprite) return;
             if (this.videoSprite) this.videoSprite.pause();
             if (closeOnFinish) this.stopVideo();
           }, duration)
@@ -254,7 +256,9 @@
           playVideo(video) {
             videoPlayer.videoSprite.play();
             setTimeout(() => {
-              videoPlayer.videoSprite.pause();
+              if (videoPlayer.videoSprite) {
+                videoPlayer.videoSprite.pause();
+              }
             }, video.duration)
           }
           addInventory(action) {
@@ -473,6 +477,7 @@
         }
         async travel(action) {
           me.audio.stop();
+          videoPlayer.stopVideo();
           me.audio.play('walking');
           setCursor('poke');
           const map = new Map(rooms[action.location]);

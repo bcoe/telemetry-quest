@@ -1,7 +1,7 @@
 {
     "objects": [],
     "background": "winner",
-    "music": ["dialog/winner", "theme"],
+    "music": ["dialog/winner", "theme", "dialog/upload"],
     "firstLoad": true,
     "inventory": false
 }

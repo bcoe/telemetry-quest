@@ -79,6 +79,8 @@
             "dialog/loser-1",
             "dialog/loser-2",
             "dialog/high-intensity",
-            "dialog/sink"
+            "dialog/sink",
+            "dialog/electricity",
+            "dialog/upload"
         ]
 }
