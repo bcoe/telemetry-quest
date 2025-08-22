@@ -6,6 +6,10 @@
         "default": {
             "poke": [
                 {
+                    "action": "playSound",
+                    "sound": "dialog/sink"
+                },
+                {
                     "action": "dialog",
                      "video": {
                         "video": "sink",
