@@ -11,106 +11,24 @@
       <div id="screen" class="cursor-poke" />
     </div>
     <script type="module">
-      // Load Sprite Sheet:
-      import spritesheet from './data/spritesheet.json' with { type: "json" };
+      // Load combined game data:
+      import gameData from './data/game-data.json' with { type: "json" };
+      
+      // Extract data from combined bundle:
+      const spritesheet = gameData.spritesheet;
+      const manifest = gameData.manifest;
+      const rooms = gameData.rooms;
+      const objects = gameData.objects;
+      
       const REGION_LOOKUP = {};
       for (const sprite of spritesheet.frames) {
         REGION_LOOKUP[sprite.filename.split('.')[0]] = sprite.filename;
       }
-
-      // Load all resources at the outset:
-      import manifest from './data/manifest.json' with { type: "json" };;
     
       import * as me from 'https://esm.run/melonjs';
       import { UISpriteElement } from 'https://esm.run/melonjs';
-      import kitchen from './data/rooms/kitchen.json' with { type: "json" };
-
-      // Street.
-      import street from './data/rooms/street.json' with { type: "json" };
-      import officeDoor from './data/objects/office-door.json' with { type: "json" };
-      import enterStore from './data/objects/enter-store.json' with { type: "json" };
-      import cycleDoor from './data/objects/cycle-door.json' with { type: "json" };
-
-      // Store.
-      import store from './data/rooms/store.json' with { type: "json" };
-      import exitStore from './data/objects/exit-store.json' with { type: "json" };
-      import storeClerk from './data/objects/store-clerk.json' with { type: "json" };
-
-      // Entrance
-      import entrance from './data/rooms/entrance.json' with { type: "json" };
-      import rightExitEntrance from './data/objects/right-exit-entrance.json' with { type: "json" };
-      import entranceDoor from './data/objects/entrance-door.json' with { type: "json" };
-      import entranceClosetDoor from './data/objects/entrance-closet-door.json' with { type: "json" };
-      import entranceScooter from './data/objects/entrance-scooter.json' with { type: "json" };
-      import entranceSweater from './data/objects/entrance-sweater.json' with { type: "json" };
-
-      // Lounge
-      import lounge from './data/rooms/lounge.json' with { type: "json" };
-      import leftExitLounge from './data/objects/left-exit-lounge.json' with { type: "json" };
-      import rightExitLounge from './data/objects/right-exit-lounge.json' with { type: "json" };
-      import constructionPaper from './data/objects/construction-paper.json' with { type: "json" };
-      import allHandsScreen from './data/objects/all-hands-screen.json' with { type: "json" };
-
-      // Frontend Pod
-      import frontend from './data/rooms/frontend.json' with { type: "json" };
-      import leftExitFrontend from './data/objects/left-exit-frontend.json' with { type: "json" };
-      import rightExitFrontend from './data/objects/right-exit-frontend.json' with { type: "json" };
-      import myComputer from './data/objects/my-computer.json' with { type: "json" };
-
-      // Hallway (liminal space)
-      import hallway from './data/rooms/hallway.json' with { type: "json" };
-      import leftExitHallway from './data/objects/left-exit-hallway.json' with { type: "json" };
-      import kitchenDoor from './data/objects/kitchen-door.json' with { type: "json" };
-      import hallwayRight from './data/objects/hallway-right.json' with { type: "json" };
-      import hallwayLeft from './data/objects/hallway-left.json' with { type: "json" };
-      import hallwayStorage from './data/objects/hallway-storage.json' with { type: "json" };
-
-      // Storage
-      import storage from './data/rooms/storage.json' with { type: "json" };
-      import exitStorage from './data/objects/exit-storage.json' with { type: "json" };
-      import storageWd40 from './data/objects/storage-wd40.json' with { type: "json" };
-
-      // Printer
-      import printer from './data/rooms/printer.json' with { type: "json" };
-      import rightExitPrinter from './data/objects/right-exit-printer.json' with { type: "json" };
-      import loadPaper from './data/objects/load-paper.json' with { type: "json" };
-
-      // Kitchen.
-      import coffeeMachine from './data/objects/coffee-machine.json' with { type: "json" };
-      import cupboard from './data/objects/cupboard.json' with { type: "json" };
-      import leftExitKitchen from './data/objects/left-exit-kitchen.json' with { type: "json" };
-      import bottomExitKitchen from './data/objects/bottom-exit-kitchen.json' with { type: "json" };
-      import sink from './data/objects/sink.json' with { type: "json" };
-      import dirtyDishes from './data/objects/dirty-dishes.json' with { type: "json" };
-
-      // Cafeteria
-      import cafeteria from './data/rooms/cafeteria.json' with { type: "json" };
-      import rightExitCafeteria from './data/objects/right-exit-cafeteria.json' with { type: "json" };
-      import cafeteriaLargeDrawer from './data/objects/cafeteria-large-drawer.json' with { type: "json" };
-      import cafeteriaSmallDrawer from './data/objects/cafeteria-small-drawer.json' with { type: "json" };
-
-      // DevOps
-      import devops from './data/rooms/devops.json' with { type: "json" };
-      import leftExitDevops from './data/objects/left-exit-devops.json' with { type: "json" };
-      import rightExitDevops from './data/objects/right-exit-devops.json' with { type: "json" };
-      import itGuy from './data/objects/it-guy.json' with { type: "json" };
-      import mark from './data/objects/mark.json' with { type: "json" };
-
-      // Server
-      import server from './data/rooms/server.json' with { type: "json" };
-      import leftExitServer from './data/objects/left-exit-server.json' with { type: "json" };
-      import router from './data/objects/router.json' with { type: "json" };
-
-      // Loading screens.
-      import exitClick from './data/objects/exit-click.json' with { type: "json" };
-      import exitMain from './data/objects/exit-main.json' with { type: "json" };
-      import exitTone from './data/objects/exit-tone.json' with { type: "json" };
-      import click from './data/rooms/click.json' with { type: "json" };
-      import main from './data/rooms/main.json' with { type: "json" };
-      import tone from './data/rooms/tone.json' with { type: "json" };
-      import winner from './data/rooms/winner.json' with { type: "json" };
-      import loser1 from './data/rooms/loser-1.json' with { type: "json" };
-      import loser2 from './data/rooms/loser-2.json' with { type: "json" };
+      
+      // All data is now available from gameData above - no more individual imports needed
 
       const canvas = document.getElementById(('screen'));
 
@@ -131,72 +49,7 @@
         canvas.classList.add(`cursor-${cursor}`);
       }
 
-      const objects = {
-        'left-exit-hallway': leftExitHallway,
-        'coffee-machine': coffeeMachine,
-        'left-exit-kitchen': leftExitKitchen,
-        'bottom-exit-kitchen': bottomExitKitchen,
-        'right-exit-entrance': rightExitEntrance,
-        'right-exit-lounge': rightExitLounge,
-        'right-exit-frontend': rightExitFrontend,
-        'left-exit-lounge': leftExitLounge,
-        'left-exit-frontend': leftExitFrontend,
-        'exit-main': exitMain,
-        'exit-tone': exitTone,
-        cupboard,
-        sink,
-        'kitchen-door': kitchenDoor,
-        'hallway-right': hallwayRight,
-        'hallway-left': hallwayLeft,
-        'right-exit-devops': rightExitDevops,
-        'left-exit-devops': leftExitDevops,
-        'right-exit-cafeteria': rightExitCafeteria,
-        'right-exit-printer': rightExitPrinter,
-        'left-exit-server': leftExitServer,
-        'entrance-door': entranceDoor,
-        'entrance-closet-door': entranceClosetDoor,
-        'entrance-scooter': entranceScooter,
-        'entrance-sweater': entranceSweater,
-        'office-door': officeDoor,
-        'enter-store': enterStore,
-        'exit-store': exitStore,
-        'hallway-storage': hallwayStorage,
-        'exit-storage': exitStorage,
-        'exit-click': exitClick,
-        'construction-paper': constructionPaper,
-        'load-paper': loadPaper,
-        'my-computer': myComputer,
-        'it-guy': itGuy,
-        router,
-        'cafeteria-large-drawer': cafeteriaLargeDrawer,
-        'cafeteria-small-drawer': cafeteriaSmallDrawer,
-        'storage-wd40': storageWd40,
-        'store-clerk': storeClerk,
-        'all-hands-screen': allHandsScreen,
-        'dirty-dishes': dirtyDishes,
-        mark,
-        'cycle-door': cycleDoor
-      };
-      const rooms = {
-        lounge,
-        kitchen,
-        main,
-        tone,
-        entrance,
-        frontend,
-        hallway,
-        devops,
-        cafeteria,
-        printer,
-        server,
-        street,
-        store,
-        storage,
-        click,
-        winner,
-        'loser-1': loser1,
-        'loser-2': loser2
-      };
+      // Objects and rooms are now loaded from the combined game data
       class VideoPlayer {
         startVideo(video, x, y, scaleX, scaleY, duration, closeOnFinish = false) {
           this.stopVideo();
